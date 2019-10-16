@@ -87,6 +87,11 @@
                 <artifactId>spring-web</artifactId>
                 <version>${springframework.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
             <!-- Spring -->
 
             <!-- Spring admin start -->
@@ -126,6 +131,14 @@
                 <version>${boot.admin.version}</version>
             </dependency>
             <!-- Spring admin end -->
+
+            <!-- zipkin -->
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-autoconfigure-collector-rabbitmq</artifactId>
+                <version>2.3.1</version>
+            </dependency>
+            <!-- zipkin -->
 
             <!-- google java lib -->
             <dependency>
@@ -202,6 +215,11 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>2.8.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
             <!-- Json  -->
 
@@ -378,6 +396,46 @@
             </dependency>
             <!-- HttpUtils 工具类 -->
 
+            <!-- Apache Curator是一个比较完善的ZooKeeper客户端框架,通过封装的一套高级API 简化了ZooKeeper的操作 -->
+            <!-- Curator start -->
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-client</artifactId>
+                <version>${curator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>${curator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>${curator.version}</version>
+            </dependency>
+            <!-- Curator end -->
+
+            <!-- Feign实现Form表单提交 -->
+            <dependency>
+                <groupId>io.github.openfeign.form</groupId>
+                <artifactId>feign-form</artifactId>
+                <version>${feign.form.spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.openfeign.form</groupId>
+                <artifactId>feign-form-spring</artifactId>
+                <version>${feign.form.spring.version}</version>
+            </dependency>
+            <!-- Feign实现Form表单提交 -->
+
+            <!-- 日志 -->
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>4.6</version>
+            </dependency>
+            <!-- 日志 -->
+
         </dependencies>
     </dependencyManagement>
 
@@ -396,4 +454,21 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <profileActive>dev</profileActive>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>pro</id>
+            <properties>
+                <profileActive>pro</profileActive>
+            </properties>
+        </profile>
+    </profiles>
 </project>
