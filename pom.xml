@@ -23,6 +23,7 @@
 
     <modules>
         <module>pickup-eureka</module>
+        <module>pickup-gateway</module>
     </modules>
 
     <properties>
