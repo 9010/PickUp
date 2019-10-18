@@ -6,8 +6,10 @@ spring:
       label: master
       server:
         git:
-          uri: git@github.com:9010/PickUp.git:pickup-config/config-repo
-
+          uri: ghttps://github.com/9010/PickUp
+          search-paths: pickup-config/config-repo
+          user: 1106690435@qq.com
+          password: ZX199605116016zx
 server:
   port: 8888
 
