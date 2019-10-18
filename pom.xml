@@ -30,7 +30,7 @@
 
         <!-- Spring Settings -->
         <spring-cloud.version>Hoxton.M3</spring-cloud.version>
-
+        <spring-config.version>2.1.2.RELEASE</spring-config.version>
     </properties>
 
     <dependencies>
@@ -42,6 +42,13 @@
 
     <dependencyManagement>
         <dependencies>
+<!--            <dependency>-->
+<!--                <groupId>io.spring.platform</groupId>-->
+<!--                <artifactId>platform-bom</artifactId>-->
+<!--                <version>Cairo-SR8</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -54,6 +61,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-config</artifactId>
+                <version>${spring-config.version}</version>
             </dependency>
             <!-- Spring end -->
 
