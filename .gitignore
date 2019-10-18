@@ -20,6 +20,7 @@
 *.idea
 
 ### IntelliJ IDEA ###
+target
 logs
 .idea
 *.iws
