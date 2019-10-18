@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-  <!-- xml在spring-boot:2.1.9.RELEASE.jar里 -->
+  <!-- xml在spring-boot:1.5.13.RELEASE.jar里 -->
   <include resource="org/springframework/boot/logging/logback/defaults.xml" />
   <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
   <!-- 开启后可以通过jmx动态控制日志级别(springboot Admin的功能) -->

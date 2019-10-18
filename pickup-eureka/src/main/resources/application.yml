@@ -7,4 +7,9 @@ spring:
   application:
     name: @pom.artifactId@
 
-
+security:
+  user:
+    name: root
+    password: root
+  basic:
+    enabled: true
