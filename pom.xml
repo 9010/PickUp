@@ -14,6 +14,14 @@
     <name>pickup-master</name>
     <description>PickUp master</description>
 
+    <developers>
+        <developer>
+            <name>朱翔</name>
+            <url>https://github.com/9010</url>
+            <email>1106690435@qq.com</email>
+        </developer>
+    </developers>
+
     <properties>
         <!-- Environment Settings -->
         <java.version>1.8</java.version>
