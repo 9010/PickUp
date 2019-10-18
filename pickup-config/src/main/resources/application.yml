@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: pickup-config
+  cloud:
+    config:
+      label: master
+      server:
+        git:
+          uri: git@github.com:9010/PickUp.git
+          search-paths: pickup-config/config-respo
+
+server:
+  port: 8888
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health,info

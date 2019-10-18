@@ -1,8 +1,7 @@
-server:
-  port: 8761
-
 spring:
-  profiles:
-    active: dev
-  application:
-    name: @pom.artifactId@
+  cloud:
+    config:
+      uri: http://localhost:8888
+      name: pickup-eureka
+      label: master
+      profile: dev
