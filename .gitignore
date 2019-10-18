@@ -23,6 +23,7 @@
 target
 logs
 .idea
+.mvn
 *.iws
 *.iml
 *.ipr
