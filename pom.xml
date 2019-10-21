@@ -22,6 +22,13 @@
         </developer>
     </developers>
 
+    <modules>
+        <module>pickup-eureka</module>
+        <module>pickup-common</module>
+        <module>pickup-config</module>
+        <module>pickup-zuul</module>
+    </modules>
+
     <properties>
         <!-- Environment Settings -->
         <java.version>1.8</java.version>
