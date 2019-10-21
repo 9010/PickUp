@@ -17,12 +17,9 @@ eureka:
 
 zuul:
   routes:
-    backend-admin:
-      path: /backend/admin/**
-      serviceId: itoken-web-admin
-    backend-posts:
-      path: /backend/posts/**
-      serviceId: itoken-web-posts
+    pickup-user:
+      path: /pickup-user/**
+      serviceId: pickup-user
 
 management:
   endpoint:
