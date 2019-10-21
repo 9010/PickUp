@@ -6,7 +6,7 @@ spring:
       label: master
       server:
         git:
-          uri: git@github.com:9010/PickUp.git
+          uri: https://github.com/9010/PickUp.git
           search-paths: pickup-config/config-repo
           username:
           password:
