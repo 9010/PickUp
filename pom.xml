@@ -31,6 +31,12 @@
         <!-- Spring Settings -->
         <spring-cloud.version>Hoxton.M3</spring-cloud.version>
         <spring-config.version>2.1.2.RELEASE</spring-config.version>
+
+        <!-- other Settings -->
+        <lombok.version>1.18.8</lombok.version>
+        <guava.version>27.0.1-jre</guava.version>
+        <jackson.version>2.9.8</jackson.version>
+        <lang3.version>3.9</lang3.version>
     </properties>
 
     <dependencies>
@@ -64,6 +70,29 @@
                 <version>${spring-config.version}</version>
             </dependency>
             <!-- Spring end -->
+
+            <!-- Other Start -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${lang3.version}</version>
+            </dependency>
+            <!-- Other End -->
 
         </dependencies>
     </dependencyManagement>
