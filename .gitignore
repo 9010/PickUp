@@ -34,4 +34,4 @@ log.*
 hs_err_pid*
 
 #Special file
-/Users/zhuxiang/IdeaProjects/PickUp/pickup-config/src/main/resources/application.yml
+/pickup-config/src/main/resources/application.yml
