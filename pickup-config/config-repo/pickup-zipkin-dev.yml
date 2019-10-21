@@ -1,6 +1,6 @@
 spring:
   application:
-    name: itoken-zipkin
+    name: pickup-zipkin
   boot:
     admin:
       client:
