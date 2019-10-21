@@ -10,6 +10,11 @@ spring:
           search-paths: pickup-config/config-repo
           username:
           password:
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      percentage: 1.0
 
 server:
   port: 8888

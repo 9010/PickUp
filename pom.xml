@@ -31,7 +31,8 @@
         <!-- Spring Settings -->
         <spring-cloud.version>Hoxton.M3</spring-cloud.version>
         <spring-config.version>2.1.2.RELEASE</spring-config.version>
-        <spring-zipkin.version>2.10.1</spring-zipkin.version>
+        <spring-zipkin.version>2.18.2</spring-zipkin.version>
+        <spring-zipkin-server.version>2.12.8</spring-zipkin-server.version>
 
         <!-- other Settings -->
         <lombok.version>1.18.8</lombok.version>
@@ -41,14 +42,22 @@
     </properties>
 
     <dependencies>
+        <!-- Eureka服务 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
+        <!-- ZipKin服务 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+
+        <!-- config服务 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
     </dependencies>
 
@@ -101,20 +110,17 @@
             <!-- Other End -->
 
             <!-- ZipKin start -->
-            <dependency>
-                <groupId>io.zipkin.java</groupId>
-                <artifactId>zipkin</artifactId>
-                <version>${spring-zipkin.version}</version>
-            </dependency>
+            <!-- Zipkin在Spring boot 2.x版本中，官方不再支持自定义，无法被启动，
+                 需要从官方直接下载jar包并启动，作为zipkin服务器 -->
             <dependency>
                 <groupId>io.zipkin.java</groupId>
                 <artifactId>zipkin-server</artifactId>
-                <version>${spring-zipkin.version}</version>
+                <version>${spring-zipkin-server.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.zipkin.java</groupId>
                 <artifactId>zipkin-autoconfigure-ui</artifactId>
-                <version>${spring-zipkin.version}</version>
+                <version>${spring-zipkin-server.version}</version>
             </dependency>
             <!-- ZipKin End -->
 
