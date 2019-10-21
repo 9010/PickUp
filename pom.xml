@@ -27,6 +27,7 @@
         <module>pickup-common</module>
         <module>pickup-config</module>
         <module>pickup-zuul</module>
+        <module>pickup-provider</module>
     </modules>
 
     <properties>
