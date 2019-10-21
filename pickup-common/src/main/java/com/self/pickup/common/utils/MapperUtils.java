@@ -1,4 +1,4 @@
-package cn.com.itoken.common.utils;
+package com.self.pickup.common.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.type.TypeReference;

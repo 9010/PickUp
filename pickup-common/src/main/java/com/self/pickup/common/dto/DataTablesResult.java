@@ -1,4 +1,4 @@
-package dto;
+package com.self.pickup.common.dto;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -1,4 +1,4 @@
-package dto;
+package com.self.pickup.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,6 +39,21 @@ public class BaseResult implements Serializable {
         return createBaseResult(RESULT_NOT_OK, null, null, FAIL, errors);
     }
 
+    @Data
+    @AllArgsConstructor
+    public static class Cursor{
+        private int total;
+        private int offset;
+        private int limit;
+    }
+
+    @Data
+    @AllArgsConstructor
+    public static class Error{
+        private String field;
+        private String message;
+    }
+
     /**
      *
      * @param result
@@ -57,20 +72,6 @@ public class BaseResult implements Serializable {
         baseResult.setErrors(errors);
 
         return baseResult;
-    }
-
-    @Data
-    public static class Cursor{
-        private int total;
-        private int offset;
-        private int limit;
-    }
-
-    @Data
-    @AllArgsConstructor
-    public static class Error{
-        private String field;
-        private String message;
     }
 
     public String getResult() {
