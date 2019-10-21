@@ -31,6 +31,7 @@
         <!-- Spring Settings -->
         <spring-cloud.version>Hoxton.M3</spring-cloud.version>
         <spring-config.version>2.1.2.RELEASE</spring-config.version>
+        <spring-zipkin.version>2.10.1</spring-zipkin.version>
 
         <!-- other Settings -->
         <lombok.version>1.18.8</lombok.version>
@@ -43,6 +44,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
         </dependency>
     </dependencies>
 
@@ -93,6 +99,24 @@
                 <version>${lang3.version}</version>
             </dependency>
             <!-- Other End -->
+
+            <!-- ZipKin start -->
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin</artifactId>
+                <version>${spring-zipkin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-server</artifactId>
+                <version>${spring-zipkin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-autoconfigure-ui</artifactId>
+                <version>${spring-zipkin.version}</version>
+            </dependency>
+            <!-- ZipKin End -->
 
         </dependencies>
     </dependencyManagement>
