@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: itoken-oauth
+  zipkin:
+    base-url: http://localhost:9411
+    sleuth:
+      sampler:
+        percentage: 1.0
+
+server:
+  port: 8769
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health,info
