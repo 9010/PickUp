@@ -28,6 +28,7 @@
         <module>pickup-config</module>
         <module>pickup-zuul</module>
         <module>pickup-provider</module>
+        <module>pickup-oauth</module>
     </modules>
 
     <properties>
