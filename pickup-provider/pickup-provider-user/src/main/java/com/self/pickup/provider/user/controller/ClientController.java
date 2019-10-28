@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ClientController {
 
-    @GetMapping("/normal")
+    @GetMapping("pickup-provider-user/normal")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public String normal( ) {
         return "用户页面";
