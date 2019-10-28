@@ -1,3 +1,7 @@
+spring:
+  application:
+    name: pickup-provider-user
+
 server:
   port: 8086
 security:
