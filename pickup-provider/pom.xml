@@ -8,7 +8,7 @@
         <version>1.0.0-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.self.pickup</groupId>
+    <groupId>com.self.pickup.provider</groupId>
     <artifactId>pickup-provider</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>pickup-provider</name>
