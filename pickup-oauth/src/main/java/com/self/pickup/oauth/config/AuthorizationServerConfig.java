@@ -1,4 +1,4 @@
-package com.self.pickup.oauth;
+package com.self.pickup.oauth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,10 +15,50 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import java.util.concurrent.TimeUnit;
 
-//授权服务
 @Configuration
 @EnableAuthorizationServer
-public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+    @Override
+    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+
+        // 定义了两个客户端应用的通行证
+        clients.inMemory()
+                .withClient("ben1")
+                .secret(new BCryptPasswordEncoder().encode("123456"))
+                .authorizedGrantTypes("authorization_code", "refresh_token")
+                .scopes("all")
+                .autoApprove(true)
+                //加上验证回调地址
+                .redirectUris("http://localhost:8086/login")
+                .and()
+                .withClient("ben2")
+                .secret(new BCryptPasswordEncoder().encode("123456"))
+                .authorizedGrantTypes("authorization_code", "refresh_token")
+                .scopes("all")
+                .autoApprove(true)
+                .redirectUris("http://localhost:8087/login");
+    }
+
+    @Override
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
+
+        //endpoints.tokenStore(jwtTokenStore()).accessTokenConverter(jwtAccessTokenConverter());
+        DefaultTokenServices tokenServices = (DefaultTokenServices) endpoints.getDefaultAuthorizationServerTokenServices();
+        //tokenServices.setTokenStore(endpoints.getTokenStore());
+        tokenServices.setTokenStore(jwtTokenStore());
+        tokenServices.setSupportRefreshToken(true);
+        tokenServices.setClientDetailsService(endpoints.getClientDetailsService());
+        //tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());
+        tokenServices.setTokenEnhancer(jwtAccessTokenConverter());
+        // 一天有效期
+        tokenServices.setAccessTokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(1));
+        endpoints.tokenServices(tokenServices);
+    }
+
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) {
+        security.tokenKeyAccess("isAuthenticated()");
+    }
 
     @Bean
     public TokenStore jwtTokenStore() {
@@ -30,46 +70,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setSigningKey("testKey");
         return converter;
-    }
-
-    @Override
-    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        String finalSecret = new BCryptPasswordEncoder().encode("123456");
-
-        // 定义了两个客户端应用的通行证
-        clients.inMemory()// 使用in-memory存储
-                .withClient("ben1")// client_id
-                .secret(finalSecret)// client_secret
-                .authorizedGrantTypes("authorization_code", "refresh_token")// 该client允许的授权类型
-                .scopes("all")// 允许的授权范围
-                .autoApprove(false)
-                //加上验证回调地址
-                .redirectUris("http://localhost:8086/login")
-                .and()
-                .withClient("ben2")
-                .secret(finalSecret)
-                .authorizedGrantTypes("authorization_code", "refresh_token")
-                .scopes("all")
-                .autoApprove(false)
-                .redirectUris("http://localhost:8087/login");
-    }
-
-    @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-        DefaultTokenServices tokenServices = (DefaultTokenServices) endpoints.getDefaultAuthorizationServerTokenServices();
-        tokenServices.setTokenStore(jwtTokenStore());
-        tokenServices.setSupportRefreshToken(true);
-        //获取ClientDetailsService信息
-        tokenServices.setClientDetailsService(endpoints.getClientDetailsService());
-        tokenServices.setTokenEnhancer(jwtAccessTokenConverter());
-        // 一天有效期
-        tokenServices.setAccessTokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(1));
-        endpoints.tokenServices(tokenServices);
-    }
-
-    @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) {
-        security.tokenKeyAccess("isAuthenticated()");
     }
 }
 

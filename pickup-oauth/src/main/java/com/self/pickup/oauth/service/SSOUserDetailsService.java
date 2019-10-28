@@ -1,4 +1,4 @@
-package com.self.pickup.oauth;
+package com.self.pickup.oauth.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
