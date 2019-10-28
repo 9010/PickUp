@@ -88,11 +88,6 @@
             </dependency>
 
             <!-- Spring start -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-config</artifactId>
-                <version>${spring-config.version}</version>
-            </dependency>
             <!-- Spring end -->
 
             <!-- Other Start -->
