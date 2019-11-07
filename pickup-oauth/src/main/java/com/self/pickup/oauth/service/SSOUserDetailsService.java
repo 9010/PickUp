@@ -20,11 +20,17 @@ public class SSOUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
-        PickupUser pickupUser = pickupUserService.getUserByAccount(account);
-        if( null == pickupUser ) {
+//        PickupUser pickupUser = pickupUserService.getUserByAccount(account);
+//        if( null == pickupUser ) {
+//            throw new UsernameNotFoundException("用户不存在");
+//        }
+//        return new User(pickupUser.getAccount(), passwordEncoder.encode(pickupUser.getPassword()),
+//                AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
+        String user = "user";
+        if( account != user ) {
             throw new UsernameNotFoundException("用户不存在");
         }
-        return new User(pickupUser.getAccount(), passwordEncoder.encode(pickupUser.getPassword()),
+        return new User(account, passwordEncoder.encode("123456"),
                 AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
     }
 }

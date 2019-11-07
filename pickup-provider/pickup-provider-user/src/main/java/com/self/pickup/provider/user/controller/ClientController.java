@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ClientController {
-    @RequestMapping("/hello")
-    public String hello(){
+    @RequestMapping("/login")
+    public String login(){
         return "Hello !";
     }
 }

@@ -24,7 +24,6 @@ server:
   servlet:
     context-path: /pickup
 
-
 eureka:
   client:
     serviceUrl:
