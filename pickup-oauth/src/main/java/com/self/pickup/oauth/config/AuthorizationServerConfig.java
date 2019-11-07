@@ -29,14 +29,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .scopes("all")
                 .autoApprove(true)
                 //加上验证回调地址
-                .redirectUris("http://localhost:8086/login")
+                .redirectUris("http://localhost:58080/login")
                 .and()
                 .withClient("ben2")
                 .secret(new BCryptPasswordEncoder().encode("123456"))
                 .authorizedGrantTypes("authorization_code", "refresh_token")
                 .scopes("all")
                 .autoApprove(true)
-                .redirectUris("http://localhost:8087/login");
+                .redirectUris("http://localhost:58080/login");
     }
 
     @Override
