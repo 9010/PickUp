@@ -151,18 +151,17 @@
             <!-- tk.mybatis End -->
 
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
-                <version>${spring-boot-alibaba-durid.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${spring-boot-pagehelper.version}</version>
             </dependency>
 
             <!-- DataBase Start -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${spring-boot-alibaba-durid.version}</version>
+            </dependency>
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
