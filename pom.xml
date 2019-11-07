@@ -13,6 +13,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <name>pickup-master</name>
     <description>PickUp master</description>
+    <packaging>pom</packaging>
 
     <developers>
         <developer>
@@ -48,6 +49,14 @@
         <guava.version>27.0.1-jre</guava.version>
         <jackson.version>2.9.8</jackson.version>
         <lang3.version>3.9</lang3.version>
+        <spring-boot-pagehelper.version>1.2.12</spring-boot-pagehelper.version>
+
+
+        <!-- DataBase settings -->
+        <tk-mybatis.version>2.1.5</tk-mybatis.version>
+        <tk-mybatis-mapper.version>4.1.5</tk-mybatis-mapper.version>
+        <spring-boot-alibaba-durid.version>1.1.18</spring-boot-alibaba-durid.version>
+        <mysql.version>5.1.46</mysql.version>
     </properties>
 
     <dependencies>
@@ -128,6 +137,39 @@
             </dependency>
             <!-- ZipKin End -->
 
+            <!-- tk.mybatis Start -->
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${tk-mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper</artifactId>
+                <version>${tk-mybatis-mapper.version}</version>
+            </dependency>
+            <!-- tk.mybatis End -->
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${spring-boot-alibaba-durid.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${spring-boot-pagehelper.version}</version>
+            </dependency>
+
+            <!-- DataBase Start -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <!-- DataBase End -->
+
         </dependencies>
     </dependencyManagement>
 
@@ -136,6 +178,32 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!-- mybatis.generator -->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.5</version>
+                <configuration>
+                    <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
+                    <overwrite>true</overwrite>
+                    <verbose>true</verbose>
+                </configuration>
+
+                <!-- mysql-connector和tk.mybatis.mapper需要在generator plugin中额外单独配置一次 -->
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>tk.mybatis</groupId>
+                        <artifactId>mapper</artifactId>
+                        <version>${tk-mybatis-mapper.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

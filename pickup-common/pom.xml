@@ -6,7 +6,7 @@
         <groupId>com.self.pickup</groupId>
         <artifactId>pickup-master</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath/>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>com.self.pickup.common</groupId>
     <artifactId>pickup-common</artifactId>
@@ -40,6 +40,19 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
+
+        <!-- tk.mybatis Start -->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>${tk-mybatis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${tk-mybatis-mapper.version}</version>
+        </dependency>
+        <!-- tk.mybatis End -->
 
     </dependencies>
 

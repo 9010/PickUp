@@ -6,13 +6,14 @@
         <groupId>com.self.pickup</groupId>
         <artifactId>pickup-master</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.self.pickup.eureka</groupId>
     <artifactId>pickup-eureka</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>pickup-eureka</name>
     <description>PickUp Eureka</description>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

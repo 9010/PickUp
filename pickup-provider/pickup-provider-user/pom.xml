@@ -6,7 +6,7 @@
         <groupId>com.self.pickup.provider</groupId>
         <artifactId>pickup-provider</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.self.pickup.provider.user</groupId>
     <artifactId>pickup-provider-user</artifactId>
@@ -19,7 +19,6 @@
     </properties>
 
     <dependencies>
-
     </dependencies>
 
     <build>
