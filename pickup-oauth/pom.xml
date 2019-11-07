@@ -51,6 +51,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>com.self.pickup.common</groupId>
+            <artifactId>pickup-common</artifactId>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

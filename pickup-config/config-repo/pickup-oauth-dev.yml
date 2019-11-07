@@ -7,10 +7,23 @@ spring:
       sampler:
         percentage: 1.0
 
+  datasource:
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/PickUp?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: root
+      password: 123456
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+      # MySQL 8.x: com.mysql.cj.jdbc.Driver
+      driver-class-name: com.mysql.jdbc.Driver
+
 server:
   port: 9000
   servlet:
     context-path: /pickup
+
 
 eureka:
   client:

@@ -37,6 +37,11 @@ public class PickupUser {
     private String creditId;
 
     /**
+     * 用户类型 0为家长 1为教师
+     */
+    private Boolean type;
+
+    /**
      * 是否被注销 0代表未注销 1代表已注销
      */
     private Boolean removed;
@@ -143,6 +148,24 @@ public class PickupUser {
      */
     public void setCreditId(String creditId) {
         this.creditId = creditId;
+    }
+
+    /**
+     * 获取用户类型 0为家长 1为教师
+     *
+     * @return type - 用户类型 0为家长 1为教师
+     */
+    public Boolean getType() {
+        return type;
+    }
+
+    /**
+     * 设置用户类型 0为家长 1为教师
+     *
+     * @param type 用户类型 0为家长 1为教师
+     */
+    public void setType(Boolean type) {
+        this.type = type;
     }
 
     /**
