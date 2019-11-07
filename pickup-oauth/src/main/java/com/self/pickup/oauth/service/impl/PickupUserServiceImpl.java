@@ -12,7 +12,7 @@ public class PickupUserServiceImpl implements PickupUserService {
     private PickupUserMapper pickupUserMapper;
 
     @Override
-    public PickupUser getUserByUsername(String account) {
+    public PickupUser getUserByAccount(String account) {
         Example example = new Example(PickupUser.class);
         example.createCriteria().andEqualTo("account", account);
 

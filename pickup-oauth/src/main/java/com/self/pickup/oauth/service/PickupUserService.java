@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface PickupUserService {
-    public PickupUser getUserByUsername(String account);
+    public PickupUser getUserByAccount(String account);
 }
