@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: pickup-redis
+  zipkin:
+    base-url: http://localhost:9411
+    sleuth:
+      sampler:
+        percentage: 1.0
+
+  redis:
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+    sentinel:
+      master: mymaster
+      nodes: localhost:26379
+
+server:
+  port: 8502
+
+#security:
+#  oauth2:
+#    client:
+#      client-id: ben1
+#      client-secret: 123456
+#      user-authorization-uri: http://localhost:9000/pickup/oauth/authorize
+#      access-token-uri: http://localhost:9000/pickup/oauth/token
+#    resource:
+#      jwt:
+#        key-uri: http://localhost:9000/pickup/oauth/token_key
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health,info
