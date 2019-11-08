@@ -120,6 +120,11 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${lang3.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${spring-boot-pagehelper.version}</version>
+            </dependency>
             <!-- Other End -->
 
             <!-- ZipKin start -->
@@ -149,12 +154,6 @@
                 <version>${tk-mybatis-mapper.version}</version>
             </dependency>
             <!-- tk.mybatis End -->
-
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>${spring-boot-pagehelper.version}</version>
-            </dependency>
 
             <!-- DataBase Start -->
             <dependency>

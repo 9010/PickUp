@@ -2,6 +2,7 @@ package com.self.pickup.provider.sso.service.impl;
 
 import com.self.pickup.common.domain.PickupUser;
 import com.self.pickup.common.mapper.PickupUserMapper;
+import com.self.pickup.common.service.impl.BaseServiceImpl;
 import com.self.pickup.common.utils.MapperUtils;
 import com.self.pickup.provider.sso.service.LoginService;
 import com.self.pickup.provider.sso.service.consumer.RedisCacheService;
@@ -13,7 +14,7 @@ import org.springframework.util.DigestUtils;
 import tk.mybatis.mapper.entity.Example;
 
 @Service
-public class LoginServiceImpl implements LoginService {
+public class LoginServiceImpl extends BaseServiceImpl<PickupUser, Integer> implements LoginService {
     private static final Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
 
     @Autowired
