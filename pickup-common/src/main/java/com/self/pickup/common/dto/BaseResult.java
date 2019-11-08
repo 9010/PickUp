@@ -45,6 +45,14 @@ public class BaseResult implements Serializable {
         private int total;
         private int offset;
         private int limit;
+
+        public Cursor() { }
+
+        public Cursor(int total, int offset, int limit) {
+            this.total = total;
+            this.offset = offset;
+            this.limit = limit;
+        }
     }
 
     @Data
@@ -53,7 +61,7 @@ public class BaseResult implements Serializable {
         private String field;
         private String message;
 
-        public Error(){};
+        public Error(){}
 
         public Error(String field, String message) {
             this.field = field;
