@@ -2,6 +2,7 @@ package com.self.pickup.provider.sso.service.impl;
 
 import com.self.pickup.common.domain.PickupUser;
 import com.self.pickup.common.mapper.PickupUserMapper;
+import com.self.pickup.common.myMapper.MyMapper;
 import com.self.pickup.common.service.impl.BaseServiceImpl;
 import com.self.pickup.common.utils.MapperUtils;
 import com.self.pickup.provider.sso.service.LoginService;
@@ -22,6 +23,11 @@ public class LoginServiceImpl extends BaseServiceImpl<PickupUser, Integer> imple
 
     @Autowired
     private PickupUserMapper pickupUserMapper;
+
+    @Override
+    public MyMapper<PickupUser> getMapper(){
+        return pickupUserMapper;
+    }
 
     @Override
     public PickupUser login(String account, String plantPassword) {
