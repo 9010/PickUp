@@ -1,6 +1,8 @@
 package com.self.pickup.provider.sso.controller;
 
+import com.google.common.collect.Lists;
 import com.self.pickup.common.domain.PickupUser;
+import com.self.pickup.common.dto.BaseResult;
 import com.self.pickup.common.utils.CookieUtils;
 import com.self.pickup.common.utils.MapperUtils;
 import com.self.pickup.provider.sso.service.LoginService;
@@ -28,33 +30,31 @@ public class LoginController {
     private LoginService loginService;
 
     /**
-     * 跳转登录页
+     * 检查是否已登陆
      *
      * @return
      */
     @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String login(
+    public BaseResult login(
+            @RequestParam(required = true) String account,
             @RequestParam(required = false) String url,
-            HttpServletRequest request, Model model) {
+            HttpServletRequest request) {
         String token = CookieUtils.getCookieValue(request, "token");
 
         // token 不为空可能已登录
         if (StringUtils.isNotBlank(token)) {
-            String account = redisService.get(token);
-            if (StringUtils.isNotBlank(account)) {
-                String json = redisService.get(account);
+            String redisAccount = redisService.get(token);
+            // 检查token是否在redis中存在，检查account是否与redis中的相同
+            if (StringUtils.isNotBlank(redisAccount) && redisAccount.equals(account)) {
+                String json = redisService.get(account);  //从redis中取出account的内容
                 if (StringUtils.isNotBlank(json)) {
                     try {
-                        PickupUser pickupUser = MapperUtils.json2pojo(json, PickupUser.class);
+                        PickupUser pickupUser = MapperUtils.json2pojo(json, PickupUser.class); //json转成object
                         // 已登录
                         if (pickupUser != null) {
-                            if (StringUtils.isNotBlank(url)) {
-                                return "redirect:" + url;
-                            }
+                            // sso已登陆，返回success标签即可
+                            return BaseResult.ok();
                         }
-
-                        // 将登录信息传到登录页
-                        model.addAttribute("pickupUser", pickupUser);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -62,11 +62,8 @@ public class LoginController {
             }
         }
 
-        if (StringUtils.isNotBlank(url)) {
-            model.addAttribute("url", url);
-        }
-
-        return "login";
+        return BaseResult.notOk(Lists.newArrayList(
+                new BaseResult.Error("SSO","未登陆")));
     }
 
     /**
@@ -77,16 +74,18 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String login(
+    public BaseResult login(
             @RequestParam(required = true) String account,
             @RequestParam(required = true) String password,
             @RequestParam(required = false) String url,
             HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+
         PickupUser pickupUser = loginService.login(account, password);
 
         // 登录失败
         if (pickupUser == null) {
-            redirectAttributes.addFlashAttribute("message", "用户名或密码错误，请重新输入");
+            BaseResult.notOk(Lists.newArrayList(
+                    new BaseResult.Error("SSO","账号或密码错误")));
         }
 
         // 登录成功
@@ -94,21 +93,22 @@ public class LoginController {
             String token = UUID.randomUUID().toString();
 
             // 将 Token 放入缓存
-            String result = redisService.put(token, account, 60 * 60 * 24);
+            String result = redisService.put(token, account, 60 * 60 * 24 * 7);
             if (StringUtils.isNotBlank(result) && "ok".equals(result)) {
-                CookieUtils.setCookie(request, response, "token", token, 60 * 60 * 24);
-                if (StringUtils.isNotBlank(url)) {
-                    return "redirect:" + url;
-                }
+                pickupUser.setToken(token);  // token放入对象
+                return BaseResult.ok(pickupUser); // 返回给前端
             }
 
-            // 熔断处理
+            // 熔断处理，服务器内部错误
             else {
-                redirectAttributes.addFlashAttribute("message", "服务器异常，请稍后再试");
+                return BaseResult.notOk(Lists.newArrayList(
+                        new BaseResult.Error("ServerError","服务器错误，请稍后再试")));
             }
         }
 
-        return "redirect:/login";
+        // 出错处理
+        return BaseResult.notOk(Lists.newArrayList(
+                new BaseResult.Error("SSO","网络错误")));
     }
 
     /**
@@ -118,18 +118,18 @@ public class LoginController {
      * @param response
      * @return
      */
-    @RequestMapping(value = "logout", method = RequestMethod.GET)
-    public String logout(HttpServletRequest request, HttpServletResponse response, @RequestParam(required = false) String url, Model model) {
-        try {
-            CookieUtils.deleteCookie(request, response, "token");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (StringUtils.isNotBlank(url)) {
-            return "redirect:/login?url=" + url;
-        } else {
-            return "redirect:/login";
-        }
-    }
+//    @RequestMapping(value = "logout", method = RequestMethod.GET)
+//    public String logout(HttpServletRequest request, HttpServletResponse response, @RequestParam(required = false) String url, Model model) {
+//        try {
+//            CookieUtils.deleteCookie(request, response, "token");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        if (StringUtils.isNotBlank(url)) {
+//            return "redirect:/login?url=" + url;
+//        } else {
+//            return "redirect:/login";
+//        }
+//    }
 }
