@@ -163,6 +163,7 @@ public abstract class BaseServiceImpl<T, ID> implements BaseService<T, ID> {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Integer updateByExampleSelective(QueryExample<T> queryExample) {
+        //todo
         return null;
     }
 
@@ -182,10 +183,16 @@ public abstract class BaseServiceImpl<T, ID> implements BaseService<T, ID> {
         return new PageInfo<T>(list);
     }
 
-
+    /**
+     * 根据query条件查询数据
+     *
+     * @param query  查询条件
+     * @return
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public List<T> findByExample(Example example) {
+    public List<T> findByExample(Example query) {
+        //todo
         return null;
     }
 
@@ -199,6 +206,7 @@ public abstract class BaseServiceImpl<T, ID> implements BaseService<T, ID> {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Integer updateByExampleSelective(T record, Example query) {
+        //todo
         return null;
     }
 
@@ -212,6 +220,7 @@ public abstract class BaseServiceImpl<T, ID> implements BaseService<T, ID> {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Integer updateByExampleSelective(T record, T query) {
+        //todo
         return null;
     }
 
@@ -236,51 +245,8 @@ public abstract class BaseServiceImpl<T, ID> implements BaseService<T, ID> {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Integer findCountByExample(Example query) {
+        //todo
         return null;
     }
 
 }
-//@Service
-//@Transactional(readOnly = true)
-//public abstract class BaseServiceImpl<T, D extends MyMapper<T>> implements BaseService<T> {
-//
-//    @Autowired
-//    private D dao;
-//
-//    @Override
-//    @Transactional(readOnly = false)
-//    public int insert(T t) {
-//        return dao.insert(t);
-//    }
-//
-//    @Override
-//    @Transactional(readOnly = false)
-//    public int delete(T t) {
-//        return dao.delete(t);
-//    }
-//
-//    @Override
-//    @Transactional(readOnly = false)
-//    public int update(T t, String updateBy) {
-//        return dao.updateByPrimaryKey(t);
-//    }
-//
-//    @Override
-//    public int count(T t) {
-//        return dao.selectCount(t);
-//    }
-//
-//    @Override
-//    public T selectOne(T t) {
-//        return dao.selectOne(t);
-//    }
-//
-//    @Override
-//    public PageInfo<T> page(int pageNum, int pageSize, T t) {
-//        PageHelper pageHelper = new PageHelper();
-//        pageHelper.startPage(pageNum, pageSize);
-//
-//        PageInfo<T> pageInfo = new PageInfo<>(dao.select(t));
-//        return pageInfo;
-//    }
-//}

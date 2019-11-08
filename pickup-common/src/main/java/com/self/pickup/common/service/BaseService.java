@@ -103,7 +103,13 @@ public interface BaseService<T, ID> {
      */
     PageInfo<T> findPage(T t, Integer pageNum, Integer pageSize);
 
-    List<T> findByExample(Example example);
+    /**
+     * 根据query条件查询数据
+     *
+     * @param query  查询条件
+     * @return
+     */
+    List<T> findByExample(Example query);
 
     /**
      * 根据query条件更新record数据
