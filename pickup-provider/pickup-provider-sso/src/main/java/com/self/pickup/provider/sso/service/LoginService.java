@@ -1,6 +1,6 @@
 package com.self.pickup.provider.sso.service;
 
-import com.funtl.itoken.common.domain.TbSysUser;
+import com.self.pickup.common.domain.PickupUser;
 
 /**
  * 登录业务
@@ -13,5 +13,5 @@ public interface LoginService {
      * @param plantPassword
      * @return
      */
-    public TbSysUser login(String loginCode, String plantPassword);
+    public PickupUser login(String loginCode, String plantPassword);
 }

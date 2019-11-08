@@ -1,6 +1,6 @@
 package com.self.pickup.provider.sso.service.consumer.fallback;
 
-import com.funtl.itoken.service.sso.service.consumer.RedisCacheService;
+import com.self.pickup.provider.sso.service.consumer.RedisCacheService;
 import org.springframework.stereotype.Component;
 
 @Component

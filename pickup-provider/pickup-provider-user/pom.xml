@@ -19,10 +19,7 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.self.pickup.common</groupId>
-            <artifactId>pickup-common</artifactId>
-        </dependency>
+
     </dependencies>
 
     <build>

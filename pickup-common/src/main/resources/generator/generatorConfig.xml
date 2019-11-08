@@ -25,14 +25,14 @@
         </jdbcConnection>
 
         <!-- 配置实体类存放路径 -->
-        <javaModelGenerator targetPackage="com.self.pickup.provider.user.domain" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.self.pickup.common.domain" targetProject="src/main/java"/>
 
         <!-- 配置 XML 存放路径 -->
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
 
         <!-- 配置 DAO 存放路径 -->
         <javaClientGenerator
-                targetPackage="com.self.pickup.provider.user.mapper"
+                targetPackage="com.self.pickup.common.mapper"
                 targetProject="src/main/java"
                 type="XMLMAPPER"/>
 
