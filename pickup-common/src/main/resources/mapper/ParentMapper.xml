@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.self.pickup.common.mapper.ParentMapper">
+  <resultMap id="BaseResultMap" type="com.self.pickup.common.domain.Parent">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="parent_name" jdbcType="VARCHAR" property="parentName" />
+    <result column="parent_gender" jdbcType="BIT" property="parentGender" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="relation" jdbcType="INTEGER" property="relation" />
+    <result column="credit_id" jdbcType="VARCHAR" property="creditId" />
+    <result column="parent_photo_url" jdbcType="LONGVARCHAR" property="parentPhotoUrl" />
+  </resultMap>
+</mapper>
