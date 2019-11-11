@@ -40,7 +40,6 @@ public class BaseResult implements Serializable {
     }
 
     @Data
-    @AllArgsConstructor
     public static class Cursor{
         private int total;
         private int offset;
@@ -56,7 +55,6 @@ public class BaseResult implements Serializable {
     }
 
     @Data
-    @AllArgsConstructor
     public static class Error{
         private String field;
         private String message;

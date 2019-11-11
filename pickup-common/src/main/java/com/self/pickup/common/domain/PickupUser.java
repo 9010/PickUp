@@ -1,5 +1,7 @@
 package com.self.pickup.common.domain;
 
+import org.springframework.util.DigestUtils;
+
 import javax.persistence.*;
 
 @Table(name = "pickup_user")
@@ -184,5 +186,27 @@ public class PickupUser {
      */
     public void setRemoved(Boolean removed) {
         this.removed = removed;
+    }
+
+    /**
+     * 空构造器
+     */
+    public PickupUser(){}
+
+    /**
+     * 构建家长
+     *
+     * @param account
+     * @param password
+     * @param schoolId
+     * @param creditId
+     */
+    public PickupUser(String account, String password, String schoolId, String creditId) {
+        this.account = account;
+        this.password = DigestUtils.md5DigestAsHex(password.getBytes());
+        this.schoolId = schoolId;
+        this.creditId = creditId;
+        this.setType(false);
+        this.setRemoved(false);
     }
 }

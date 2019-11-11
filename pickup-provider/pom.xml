@@ -52,6 +52,13 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- json Start -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <!-- json End -->
+
         <!-- tk.mybatis start -->
         <dependency>
             <groupId>tk.mybatis</groupId>

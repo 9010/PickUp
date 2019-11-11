@@ -1,27 +1,22 @@
 package com.self.pickup.provider.user.service.impl;
 
-import com.self.pickup.provider.user.domain.PickupUser;
-import com.self.pickup.provider.user.mapper.PickupUserMapper;
+import com.self.pickup.common.domain.PickupUser;
+import com.self.pickup.common.mapper.PickupUserMapper;
+import com.self.pickup.common.myMapper.MyMapper;
+import com.self.pickup.common.service.impl.BaseServiceImpl;
 import com.self.pickup.provider.user.service.PickupUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import tk.mybatis.mapper.entity.Example;
+import org.springframework.stereotype.Service;
 
-public class PickupUserServiceImpl implements PickupUserService {
+@Service
+public class PickupUserServiceImpl extends BaseServiceImpl<PickupUser, Integer> implements PickupUserService {
 
     @Autowired
     private PickupUserMapper pickupUserMapper;
 
     @Override
-    public PickupUser getUserByAccount(String account) {
-        Example example = new Example(PickupUser.class);
-        example.createCriteria().andEqualTo("account", account);
-
-        PickupUser pickupUser = pickupUserMapper.selectOneByExample(example);
-
-        if(pickupUser.equals(null)){
-            return null;
-        }
-
-        return pickupUser;
+    public MyMapper<PickupUser> getMapper() {
+        return pickupUserMapper;
     }
+
 }

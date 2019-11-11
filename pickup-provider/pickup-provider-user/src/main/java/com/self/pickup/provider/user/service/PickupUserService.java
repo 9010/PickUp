@@ -1,9 +1,7 @@
 package com.self.pickup.provider.user.service;
 
-import com.self.pickup.provider.user.domain.PickupUser;
-import org.springframework.stereotype.Service;
+import com.self.pickup.common.domain.PickupUser;
+import com.self.pickup.common.service.BaseService;
 
-@Service
-public interface PickupUserService {
-    public PickupUser getUserByAccount(String account);
+public interface PickupUserService extends BaseService<PickupUser, Integer> {
 }

@@ -1,5 +1,6 @@
 package com.self.pickup.provider.sso.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import com.self.pickup.common.domain.PickupUser;
 import com.self.pickup.common.dto.BaseResult;
@@ -11,9 +12,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +22,8 @@ import java.util.UUID;
 @Controller
 public class LoginController {
 
-    @Autowired
-    private RedisCacheService redisService;
+//    @Autowired
+//    private RedisCacheService redisService;
 
     @Autowired
     private LoginService loginService;
@@ -34,51 +33,49 @@ public class LoginController {
      *
      * @return
      */
-    @RequestMapping(value = "login", method = RequestMethod.GET)
-    public BaseResult login(
-            @RequestParam(required = true) String account,
-            @RequestParam(required = false) String url,
-            HttpServletRequest request) {
-        String token = CookieUtils.getCookieValue(request, "token");
-
-        // token 不为空可能已登录
-        if (StringUtils.isNotBlank(token)) {
-            String redisAccount = redisService.get(token);
-            // 检查token是否在redis中存在，检查account是否与redis中的相同
-            if (StringUtils.isNotBlank(redisAccount) && redisAccount.equals(account)) {
-                String json = redisService.get(account);  //从redis中取出account的内容
-                if (StringUtils.isNotBlank(json)) {
-                    try {
-                        PickupUser pickupUser = MapperUtils.json2pojo(json, PickupUser.class); //json转成object
-                        // 已登录
-                        if (pickupUser != null) {
-                            // sso已登陆，返回success标签即可
-                            return BaseResult.ok();
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-
-        return BaseResult.notOk(Lists.newArrayList(
-                new BaseResult.Error("SSO","未登陆")));
-    }
+//    @RequestMapping(value = "login", method = RequestMethod.GET)
+//    public BaseResult login(
+//            @RequestParam(required = true) String account,
+//            @RequestParam(required = false) String url,
+//            HttpServletRequest request) {
+//        String token = CookieUtils.getCookieValue(request, "token");
+//
+//        // token 不为空可能已登录
+//        if (StringUtils.isNotBlank(token)) {
+//            String redisAccount = redisService.get(token);
+//            // 检查token是否在redis中存在，检查account是否与redis中的相同
+//            if (StringUtils.isNotBlank(redisAccount) && redisAccount.equals(account)) {
+//                String json = redisService.get(account);  //从redis中取出account的内容
+//                if (StringUtils.isNotBlank(json)) {
+//                    try {
+//                        PickupUser pickupUser = MapperUtils.json2pojo(json, PickupUser.class); //json转成object
+//                        // 已登录
+//                        if (pickupUser != null) {
+//                            // sso已登陆，返回success标签即可
+//                            return BaseResult.ok();
+//                        }
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }
+//
+//        return BaseResult.notOk(Lists.newArrayList(
+//                new BaseResult.Error("SSO","未登陆")));
+//    }
 
     /**
      * 登录业务
      *
-     * @param account
-     * @param password
+     * @param jsonParam
      * @return
      */
+    @ResponseBody
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public BaseResult login(
-            @RequestParam(required = true) String account,
-            @RequestParam(required = true) String password,
-            @RequestParam(required = false) String url,
-            HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+    public String login(@RequestBody JSONObject jsonParam) {
+        String account = jsonParam.getString("account");
+        String password = jsonParam.getString("password");
 
         PickupUser pickupUser = loginService.login(account, password);
 
@@ -92,23 +89,34 @@ public class LoginController {
         else {
             String token = UUID.randomUUID().toString();
 
+            // 先将redis有关内容注释，建立redis服务器后再使用
             // 将 Token 放入缓存
-            String result = redisService.put(token, account, 60 * 60 * 24 * 7);
-            if (StringUtils.isNotBlank(result) && "ok".equals(result)) {
+//            String result = redisService.put(token, account, 60 * 60 * 24 * 7);
+//            if (StringUtils.isNotBlank(result) && "ok".equals(result)) {
                 pickupUser.setToken(token);  // token放入对象
-                return BaseResult.ok(pickupUser); // 返回给前端
+            try {
+                return MapperUtils.obj2json(BaseResult.ok(pickupUser)); // 返回给前端
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+//            }
 
             // 熔断处理，服务器内部错误
-            else {
-                return BaseResult.notOk(Lists.newArrayList(
-                        new BaseResult.Error("ServerError","服务器错误，请稍后再试")));
-            }
+//            else {
+//                return BaseResult.notOk(Lists.newArrayList(
+//                        new BaseResult.Error("ServerError","服务器错误，请稍后再试")));
+//            }
         }
 
         // 出错处理
-        return BaseResult.notOk(Lists.newArrayList(
-                new BaseResult.Error("SSO","网络错误")));
+        try {
+            return MapperUtils.obj2json(BaseResult.notOk(Lists.newArrayList(
+                    new BaseResult.Error("SSO","网络错误"))));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "Exception!";
     }
 
     /**
