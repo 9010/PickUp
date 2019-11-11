@@ -77,23 +77,28 @@ public class LoginController {
         String account = jsonParam.getString("account");
         String password = jsonParam.getString("password");
 
-        PickupUser pickupUser = loginService.login(account, password);
+        String message = loginService.login(account, password);
 
         // 登录失败
-        if (pickupUser == null) {
-            BaseResult.notOk(Lists.newArrayList(
-                    new BaseResult.Error("SSO","账号或密码错误")));
+        if (message != "ok") {
+            try {
+                MapperUtils.obj2json(BaseResult.notOk(Lists.newArrayList(
+                        new BaseResult.Error("SSO", message))));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
 
         // 登录成功
         else {
             String token = UUID.randomUUID().toString();
-
+            PickupUser pickupUser = loginService.getOneByAccount(account);
             // 先将redis有关内容注释，建立redis服务器后再使用
             // 将 Token 放入缓存
 //            String result = redisService.put(token, account, 60 * 60 * 24 * 7);
 //            if (StringUtils.isNotBlank(result) && "ok".equals(result)) {
-                pickupUser.setToken(token);  // token放入对象
+            pickupUser.setToken(token);  // token放入对象
             try {
                 return MapperUtils.obj2json(BaseResult.ok(pickupUser)); // 返回给前端
             } catch (Exception e) {

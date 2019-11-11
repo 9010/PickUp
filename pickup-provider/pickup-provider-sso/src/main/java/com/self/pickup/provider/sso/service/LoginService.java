@@ -10,9 +10,16 @@ public interface LoginService extends BaseService<PickupUser, Integer> {
 
     /**
      * 登录
-     * @param loginCode
+     * @param account
      * @param plantPassword
      * @return
      */
-    public PickupUser login(String loginCode, String plantPassword);
+    public String login(String account, String plantPassword);
+
+    /**
+     * 根据账号查询用户
+     * @param account
+     * @return
+     */
+    public PickupUser getOneByAccount(String account);
 }

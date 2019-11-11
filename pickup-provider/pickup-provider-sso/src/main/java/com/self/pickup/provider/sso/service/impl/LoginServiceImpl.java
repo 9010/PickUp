@@ -26,8 +26,14 @@ public class LoginServiceImpl extends BaseServiceImpl<PickupUser, Integer> imple
         return pickupUserMapper;
     }
 
+    /**
+     * 登录
+     * @param account
+     * @param plantPassword
+     * @return
+     */
     @Override
-    public PickupUser login(String account, String plantPassword) {
+    public String login(String account, String plantPassword) {
         PickupUser pickupUser = null;
 
         // 先不使用redis，直接从数据库取数据
@@ -40,10 +46,34 @@ public class LoginServiceImpl extends BaseServiceImpl<PickupUser, Integer> imple
 
         // 检查是否取出数据，以及密码是否对应匹配
         if (pickupUser != null && password.equals(pickupUser.getPassword())) {
-            return pickupUser;
-        } else {
-            return null;
+            return "ok";
         }
+        else if(pickupUser == null){
+            return "不存在此账号，请先注册";
+        }
+        else if(!password.equals(pickupUser.getPassword())){
+            return "密码错误，请重新输入";
+        }
+        else{
+            return "内部错误";
+        }
+    }
+
+    /**
+     * 根据账号查询用户
+     * @param account
+     * @return
+     */
+    @Override
+    public PickupUser getOneByAccount(String account) {
+        PickupUser pickupUser = null;
+
+        // 从数据库中找到account数据
+        Example example = new Example(PickupUser.class);
+        example.createCriteria().andEqualTo("account", account);
+        pickupUser = pickupUserMapper.selectOneByExample(example);
+
+        return pickupUser;
     }
 
 //    @Autowired
