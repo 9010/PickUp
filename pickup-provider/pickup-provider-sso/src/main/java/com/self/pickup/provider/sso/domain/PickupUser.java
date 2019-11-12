@@ -1,6 +1,4 @@
-package com.self.pickup.common.domain;
-
-import org.springframework.util.DigestUtils;
+package com.self.pickup.provider.sso.domain;
 
 import javax.persistence.*;
 
@@ -191,11 +189,11 @@ public class PickupUser {
     /**
      * 空构造器
      */
-    public PickupUser(){}
+    public PickupUser() {
+    }
 
     /**
-     * 构建家长
-     *
+     * 注册用构造器 （家长专用）
      * @param account
      * @param password
      * @param schoolId
@@ -203,10 +201,10 @@ public class PickupUser {
      */
     public PickupUser(String account, String password, String schoolId, String creditId) {
         this.account = account;
-        this.password = DigestUtils.md5DigestAsHex(password.getBytes());
+        this.password = password;
         this.schoolId = schoolId;
         this.creditId = creditId;
-        this.setType(false);
-        this.setRemoved(false);
+        this.type = false;
+        this.removed = false;
     }
 }

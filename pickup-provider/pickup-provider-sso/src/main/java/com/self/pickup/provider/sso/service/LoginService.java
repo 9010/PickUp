@@ -1,7 +1,7 @@
 package com.self.pickup.provider.sso.service;
 
-import com.self.pickup.common.domain.PickupUser;
 import com.self.pickup.common.service.BaseService;
+import com.self.pickup.provider.sso.domain.PickupUser;
 
 /**
  * 登录业务
