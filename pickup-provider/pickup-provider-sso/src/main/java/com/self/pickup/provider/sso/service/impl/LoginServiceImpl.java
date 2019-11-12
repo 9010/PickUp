@@ -32,27 +32,50 @@ public class LoginServiceImpl extends BaseServiceImpl<User, Integer> implements 
      */
     @Override
     public String login(String account, String plantPassword) {
-        User User = null;
+        User user = null;
 
         // 先不使用redis，直接从数据库取数据
         // 从数据库中找到account数据
-        Example example = new Example(User.class);
-        example.createCriteria().andEqualTo("account", account);
-        User = UserMapper.selectOneByExample(example);
+        user = getOneByAccount(account);
 
         String password = DigestUtils.md5DigestAsHex(plantPassword.getBytes());
 
         // 检查是否取出数据，以及密码是否对应匹配
-        if (User != null && password.equals(User.getPassword())) {
+        if (user != null && password.equals(user.getPassword())) {
             return "ok";
         }
-        else if(User == null){
+        else if(user == null){
             return "不存在此账号，请先注册";
         }
-        else if(!password.equals(User.getPassword())){
+        else if(!password.equals(user.getPassword())){
             return "密码错误，请重新输入";
         }
         else{
+            return "内部错误";
+        }
+    }
+
+    /**
+     * 检查是否已登录
+     * @param account
+     * @param token
+     * @return
+     */
+    @Override
+    public String haveLogin(String account, String token) {
+        User user = null;
+        user =getOneByAccount(account);
+
+        if(user != null && token == user.getToken()){
+            return "ok";
+        }
+        else if(user == null){
+            return "此账号已被注销";
+        }
+        else if(token != user.getToken()){
+            return "此账号在已在其他设备登陆";
+        }
+        else {
             return "内部错误";
         }
     }
@@ -68,7 +91,7 @@ public class LoginServiceImpl extends BaseServiceImpl<User, Integer> implements 
 
         // 从数据库中找到account数据
         Example example = new Example(User.class);
-        example.createCriteria().andEqualTo("account", account);
+        example.createCriteria().andEqualTo("account", account).andEqualTo("removed", false);
         User = UserMapper.selectOneByExample(example);
 
         return User;

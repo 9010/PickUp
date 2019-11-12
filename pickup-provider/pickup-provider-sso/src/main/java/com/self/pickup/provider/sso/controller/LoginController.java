@@ -83,7 +83,8 @@ public class LoginController {
         // 登录失败
         if (message != "ok") {
             try {
-                MapperUtils.obj2json(BaseResult.notOk(Lists.newArrayList(
+                // 错误信息返回前端
+                return MapperUtils.obj2json(BaseResult.notOk(Lists.newArrayList(
                         new BaseResult.Error("SSO", message))));
             } catch (Exception e) {
                 e.printStackTrace();
@@ -94,30 +95,31 @@ public class LoginController {
         // 登录成功
         else {
             String token = UUID.randomUUID().toString();
-            User User = loginService.getOneByAccount(account);
+            User user = loginService.getOneByAccount(account);
             // 先将redis有关内容注释，建立redis服务器后再使用
             // 将 Token 放入缓存
 //            String result = redisService.put(token, account, 60 * 60 * 24 * 7);
 //            if (StringUtils.isNotBlank(result) && "ok".equals(result)) {
-            User.setToken(token);  // token放入对象
+            user.setToken(token);  // token放入对象
+            loginService.updateByPrimaryKey(user);
             try {
-                return MapperUtils.obj2json(BaseResult.ok(User)); // 返回给前端
+                return MapperUtils.obj2json(BaseResult.ok(user)); // 返回给前端
             } catch (Exception e) {
                 e.printStackTrace();
             }
 //            }
 
-            // 熔断处理，服务器内部错误
+            // redis熔断处理，服务器内部错误
 //            else {
 //                return BaseResult.notOk(Lists.newArrayList(
 //                        new BaseResult.Error("ServerError","服务器错误，请稍后再试")));
 //            }
         }
 
-        // 出错处理
+        // 服务器出错处理
         try {
             return MapperUtils.obj2json(BaseResult.notOk(Lists.newArrayList(
-                    new BaseResult.Error("SSO","网络错误"))));
+                    new BaseResult.Error("SSO","内部错误"))));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -128,22 +130,32 @@ public class LoginController {
     /**
      * 注销
      *
-     * @param request
-     * @param response
+     * @param jsonParam
      * @return
      */
-//    @RequestMapping(value = "logout", method = RequestMethod.GET)
-//    public String logout(HttpServletRequest request, HttpServletResponse response, @RequestParam(required = false) String url, Model model) {
-//        try {
-//            CookieUtils.deleteCookie(request, response, "token");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        if (StringUtils.isNotBlank(url)) {
-//            return "redirect:/login?url=" + url;
-//        } else {
-//            return "redirect:/login";
-//        }
-//    }
+    @ResponseBody
+    @RequestMapping(value = "logout", method = RequestMethod.POST)
+    public String logout(@RequestBody JSONObject jsonParam) {
+        String account = jsonParam.getString("account");
+        User user = loginService.getOneByAccount(account);
+        if(user == null){
+            try {
+                return MapperUtils.obj2json(BaseResult.notOk(Lists.newArrayList(
+                        new BaseResult.Error("Logout","不存在的账号"))));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            user.setToken("");
+            loginService.updateByPrimaryKey(user);
+            try {
+                return MapperUtils.obj2json(BaseResult.ok()); // 返回给前端
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return "Exception!";
+    }
 }

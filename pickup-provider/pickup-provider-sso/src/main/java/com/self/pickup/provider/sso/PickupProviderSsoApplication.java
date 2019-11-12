@@ -7,7 +7,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-@MapperScan(basePackages = {"com.self.pickup.common.mapper"})
+@MapperScan(basePackages = "com.self.pickup.provider.sso.mapper")
 public class PickupProviderSsoApplication {
 
     public static void main(String[] args) {

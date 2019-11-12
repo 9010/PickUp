@@ -192,8 +192,7 @@ public abstract class BaseServiceImpl<T, ID> implements BaseService<T, ID> {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public List<T> findByExample(Example query) {
-        //todo
-        return null;
+        return getMapper().selectByExample(query);
     }
 
     /**

@@ -203,6 +203,7 @@ public class User {
         this.password = password;
         this.schoolId = schoolId;
         this.creditId = creditId;
+        this.token = "";
         this.type = false;
         this.removed = false;
     }
