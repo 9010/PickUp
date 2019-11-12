@@ -2,8 +2,7 @@ package com.self.pickup.provider.sso.domain;
 
 import javax.persistence.*;
 
-@Table(name = "pickup_user")
-public class PickupUser {
+public class User {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "SELECT LAST_INSERT_ID()")
@@ -189,17 +188,17 @@ public class PickupUser {
     /**
      * 空构造器
      */
-    public PickupUser() {
+    public User() {
     }
 
     /**
-     * 注册用构造器 （家长专用）
+     * 注册用构造器，类型为家长
      * @param account
      * @param password
      * @param schoolId
      * @param creditId
      */
-    public PickupUser(String account, String password, String schoolId, String creditId) {
+    public User(String account, String password, String schoolId, String creditId) {
         this.account = account;
         this.password = password;
         this.schoolId = schoolId;

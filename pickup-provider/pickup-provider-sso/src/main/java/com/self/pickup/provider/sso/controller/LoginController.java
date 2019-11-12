@@ -5,7 +5,7 @@ import com.google.common.collect.Lists;
 import com.self.pickup.common.dto.BaseResult;
 import com.self.pickup.common.utils.CookieUtils;
 import com.self.pickup.common.utils.MapperUtils;
-import com.self.pickup.provider.sso.domain.PickupUser;
+import com.self.pickup.provider.sso.domain.User;
 import com.self.pickup.provider.sso.service.LoginService;
 import com.self.pickup.provider.sso.service.consumer.RedisCacheService;
 import org.apache.commons.lang.StringUtils;
@@ -94,14 +94,14 @@ public class LoginController {
         // 登录成功
         else {
             String token = UUID.randomUUID().toString();
-            PickupUser pickupUser = loginService.getOneByAccount(account);
+            User User = loginService.getOneByAccount(account);
             // 先将redis有关内容注释，建立redis服务器后再使用
             // 将 Token 放入缓存
 //            String result = redisService.put(token, account, 60 * 60 * 24 * 7);
 //            if (StringUtils.isNotBlank(result) && "ok".equals(result)) {
-            pickupUser.setToken(token);  // token放入对象
+            User.setToken(token);  // token放入对象
             try {
-                return MapperUtils.obj2json(BaseResult.ok(pickupUser)); // 返回给前端
+                return MapperUtils.obj2json(BaseResult.ok(User)); // 返回给前端
             } catch (Exception e) {
                 e.printStackTrace();
             }

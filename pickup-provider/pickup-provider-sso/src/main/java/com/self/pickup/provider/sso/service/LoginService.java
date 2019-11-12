@@ -1,12 +1,12 @@
 package com.self.pickup.provider.sso.service;
 
 import com.self.pickup.common.service.BaseService;
-import com.self.pickup.provider.sso.domain.PickupUser;
+import com.self.pickup.provider.sso.domain.User;
 
 /**
  * 登录业务
  */
-public interface LoginService extends BaseService<PickupUser, Integer> {
+public interface LoginService extends BaseService<User, Integer> {
 
     /**
      * 登录
@@ -21,5 +21,5 @@ public interface LoginService extends BaseService<PickupUser, Integer> {
      * @param account
      * @return
      */
-    public PickupUser getOneByAccount(String account);
+    public User getOneByAccount(String account);
 }

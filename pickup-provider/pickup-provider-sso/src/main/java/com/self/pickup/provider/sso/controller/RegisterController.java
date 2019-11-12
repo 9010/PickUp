@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import com.self.pickup.common.dto.BaseResult;
 import com.self.pickup.common.utils.MapperUtils;
-import com.self.pickup.provider.sso.domain.PickupUser;
-import com.self.pickup.provider.sso.service.PickupUserService;
+import com.self.pickup.provider.sso.domain.User;
+import com.self.pickup.provider.sso.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class RegisterController {
     @Autowired
-    private PickupUserService pickupUserService;
+    private UserService UserService;
 
     /**
      * 注册业务
@@ -30,12 +30,12 @@ public class RegisterController {
         String schoolId = jsonParam.getString("schoolId");
         String creditId = jsonParam.getString("creditId");
 
-        PickupUser pickupUser = new PickupUser(account, password, schoolId, creditId);
+        User User = new User(account, password, schoolId, creditId);
 
-        int success = pickupUserService.add(pickupUser);
+        int success = UserService.add(User);
         if(success == 1){
             try {
-                return MapperUtils.obj2json(BaseResult.ok(pickupUser)) ;
+                return MapperUtils.obj2json(BaseResult.ok(User)) ;
             } catch (Exception e) {
                 e.printStackTrace();
             }
