@@ -27,18 +27,17 @@ public class LoginServiceImpl extends BaseServiceImpl<User, Integer> implements 
     /**
      * 登录
      * @param account
-     * @param plantPassword
+     * @param password
      * @return
      */
     @Override
-    public String login(String account, String plantPassword) {
+    public String login(String account, String password) {
         User user = null;
 
         // 先不使用redis，直接从数据库取数据
         // 从数据库中找到account数据
         user = getOneByAccount(account);
 
-        String password = DigestUtils.md5DigestAsHex(plantPassword.getBytes());
 
         // 检查是否取出数据，以及密码是否对应匹配
         if (user != null && password.equals(user.getPassword())) {
@@ -91,6 +90,7 @@ public class LoginServiceImpl extends BaseServiceImpl<User, Integer> implements 
 
         // 从数据库中找到account数据
         Example example = new Example(User.class);
+        //存在account并且未被注销
         example.createCriteria().andEqualTo("account", account).andEqualTo("removed", false);
         User = UserMapper.selectOneByExample(example);
 
