@@ -44,6 +44,7 @@
         <spring-config.version>2.1.2.RELEASE</spring-config.version>
         <spring-zipkin.version>2.18.2</spring-zipkin.version>
         <spring-zipkin-server.version>2.12.8</spring-zipkin-server.version>
+        <spring-webmvc.version>5.2.0.RELEASE</spring-webmvc.version>
 
         <!-- other Settings -->
         <lombok.version>1.18.8</lombok.version>
@@ -99,6 +100,12 @@
             </dependency>
 
             <!-- Spring start -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring-webmvc.version}</version>
+                <scope>compile</scope>
+            </dependency>
             <!-- Spring end -->
 
             <!-- json Start -->

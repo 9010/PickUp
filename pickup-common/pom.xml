@@ -45,6 +45,13 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
         </dependency>
 
+        <!-- json Start -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <!-- json End -->
+
         <!-- tk.mybatis Start -->
         <dependency>
             <groupId>tk.mybatis</groupId>
@@ -57,6 +64,19 @@
             <version>${tk-mybatis-mapper.version}</version>
         </dependency>
         <!-- tk.mybatis End -->
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- 特殊导入，为了拦截器 -->
+        <dependency>
+            <groupId>com.self.pickup.provider.sso</groupId>
+            <artifactId>pickup-provider-sso</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
 
     </dependencies>
 
