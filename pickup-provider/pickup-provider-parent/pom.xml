@@ -19,6 +19,10 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.self.pickup.provider.sso</groupId>
+            <artifactId>pickup-provider-sso</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,6 +1,6 @@
 package com.self.pickup.provider.parent.config;
 
-import com.self.pickup.common.inteceptor.LoginInterceptor;
+import com.self.pickup.provider.sso.inteceptor.LoginInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -22,17 +22,17 @@ public class WebConfigurer implements WebMvcConfigurer {
 //        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
 //    }
 
-    @Bean
-    public LoginInterceptor authenticationInterceptor() {
-        return new LoginInterceptor();
-    }
-
-    // 这个方法用来注册拦截器，自己写的拦截器需要通过这里添加注册才能生效
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(authenticationInterceptor())
-                .addPathPatterns("/**");    // 拦截所有请求
-    }
+//    @Bean
+//    public LoginInterceptor authenticationInterceptor() {
+//        return new LoginInterceptor();
+//    }
+//
+//    // 这个方法用来注册拦截器，自己写的拦截器需要通过这里添加注册才能生效
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(authenticationInterceptor())
+//                .addPathPatterns("/**");    // 拦截所有请求
+//    }
 
     /**
      * 解决跨域问题

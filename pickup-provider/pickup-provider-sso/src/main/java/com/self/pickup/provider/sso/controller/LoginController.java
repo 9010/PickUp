@@ -25,17 +25,17 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    /**
-     * 检查是否登陆
-     * @param account
-     * @param password
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping(value = "checkLogin")
-    public String checkLogin(String account, String password){
-        return loginService.haveLogin(account, password);
-    }
+//    /**
+//     * 检查是否登陆
+//     * @param account
+//     * @param password
+//     * @return
+//     */
+//    @ResponseBody
+//    @RequestMapping(value = "checkLogin")
+//    public String checkLogin(String account, String password){
+//        return loginService.haveLogin(account, password);
+//    }
 
     /**
      * 登录业务

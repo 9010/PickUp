@@ -94,13 +94,13 @@
     </dependencies>
 
     <dependencyManagement>
-<!--        <dependencies>-->
-<!--            <dependency>-->
-<!--                <groupId>com.self.pickup.provider.sso</groupId>-->
-<!--                <artifactId>pickup-provider-sso</artifactId>-->
-<!--                <version>${pickup.version}</version>-->
-<!--            </dependency>-->
-<!--        </dependencies>-->
+        <dependencies>
+            <dependency>
+                <groupId>com.self.pickup.provider.sso</groupId>
+                <artifactId>pickup-provider-sso</artifactId>
+                <version>${pickup.version}</version>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
 
     <build>

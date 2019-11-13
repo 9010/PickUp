@@ -1,6 +1,6 @@
-package com.self.pickup.common.inteceptor;
+package com.self.pickup.provider.sso.inteceptor;
 
-import com.self.pickup.common.service.SsoService;
+import com.self.pickup.provider.sso.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginInterceptor implements HandlerInterceptor {
 
     @Autowired
-    private SsoService ssoService;
+    private LoginService loginService;
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest,
@@ -25,7 +25,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         String account = httpServletRequest.getParameter("account");
 
         // 执行认证
-        String message = ssoService.checkLogin(account, token);
+        String message = loginService.haveLogin(account, token);
         if(message == "ok"){
             return true;
         }

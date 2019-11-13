@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @FeignClient(value = "pickup-provider-sso")
 public interface SsoService {
 
-    @RequestMapping("checkLogin")
+    @RequestMapping("sso/checkLogin")
     public String checkLogin(String account, String token);
 }

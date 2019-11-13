@@ -12,10 +12,9 @@ public class Parent {
     private Integer id;
 
     /**
-     * 拥有账号的家长的账号的ID
+     * 拥有账号的家长的账号
      */
-    @Column(name = "user_id")
-    private String userId;
+    private String account;
 
     /**
      * 家长姓名
@@ -70,21 +69,21 @@ public class Parent {
     }
 
     /**
-     * 获取拥有账号的家长的账号的ID
+     * 获取拥有账号的家长的账号
      *
-     * @return user_id - 拥有账号的家长的账号的ID
+     * @return account - 拥有账号的家长的账号
      */
-    public String getUserId() {
-        return userId;
+    public String getAccount() {
+        return account;
     }
 
     /**
-     * 设置拥有账号的家长的账号的ID
+     * 设置拥有账号的家长的账号
      *
-     * @param userId 拥有账号的家长的账号的ID
+     * @param account 拥有账号的家长的账号
      */
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     /**
