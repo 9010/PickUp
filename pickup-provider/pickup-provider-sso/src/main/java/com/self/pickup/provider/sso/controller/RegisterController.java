@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import com.self.pickup.common.dto.BaseResult;
 import com.self.pickup.common.utils.MapperUtils;
 import com.self.pickup.provider.sso.domain.User;
+import com.self.pickup.provider.sso.service.GetStudentService;
 import com.self.pickup.provider.sso.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 public class RegisterController {
     @Autowired
     private UserService UserService;
+
+    @Autowired
+    private GetStudentService getStudentService;
 
     /**
      * 注册业务
@@ -30,21 +34,36 @@ public class RegisterController {
         String schoolId = jsonParam.getString("schoolId");
         String creditId = jsonParam.getString("creditId");
 
-        User User = new User(account, password, schoolId, creditId);
+        // 检查学籍号是否正确
+        boolean checkCreditId = getStudentService.checkCreditId(creditId);
+        // 学籍号正确
+        if(checkCreditId) {
 
-        int success = UserService.add(User);
-        if(success == 1){
-            try {
-                return MapperUtils.obj2json(BaseResult.ok(User)) ;
-            } catch (Exception e) {
-                e.printStackTrace();
+            User User = new User(account, password, schoolId, creditId);
+
+            int success = UserService.add(User);
+            if (success == 1) {
+                try {
+                    return MapperUtils.obj2json(BaseResult.ok(User));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                // 出错处理
+                try {
+                    return MapperUtils.obj2json(BaseResult.notOk(Lists.newArrayList(
+                            new BaseResult.Error("register", "网络错误"))));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
+        // 学籍号错误
         else {
             // 出错处理
             try {
                 return MapperUtils.obj2json(BaseResult.notOk(Lists.newArrayList(
-                        new BaseResult.Error("register","网络错误"))));
+                        new BaseResult.Error("register", "学籍号错误"))));
             } catch (Exception e) {
                 e.printStackTrace();
             }

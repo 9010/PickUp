@@ -30,7 +30,7 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, Integer> implem
 
         // 从数据库中找到数据
         Example example = new Example(Student.class);
-        example.createCriteria().andEqualTo("credit_id", creditId);
+        example.createCriteria().andEqualTo("creditId", creditId);
         student = studentMapper.selectOneByExample(example);
 
         return student;

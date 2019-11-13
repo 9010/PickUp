@@ -15,7 +15,7 @@ spring:
       driver-class-name: com.mysql.jdbc.Driver
 
 server:
-  port: 58081
+  port: 58082
 
 eureka:
   client:
