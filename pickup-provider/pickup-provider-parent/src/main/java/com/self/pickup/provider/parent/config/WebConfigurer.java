@@ -1,4 +1,4 @@
-package com.self.pickup.provider.user.config;
+package com.self.pickup.provider.parent.config;
 
 import com.self.pickup.common.inteceptor.LoginInterceptor;
 import org.springframework.context.annotation.Bean;

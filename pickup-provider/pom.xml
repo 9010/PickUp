@@ -16,7 +16,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>pickup-provider-user</module>
+        <module>pickup-provider-parent</module>
         <module>pickup-provider-sso</module>
     </modules>
 
