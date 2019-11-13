@@ -16,6 +16,7 @@ import java.util.UUID;
 
 @CrossOrigin
 @Controller
+@RequestMapping(value = "sso")
 public class LoginController {
 
 //    @Autowired
@@ -23,43 +24,6 @@ public class LoginController {
 
     @Autowired
     private LoginService loginService;
-
-    /**
-     * 检查是否已登陆
-     *
-     * @return
-     */
-//    @RequestMapping(value = "login", method = RequestMethod.GET)
-//    public BaseResult login(
-//            @RequestParam(required = true) String account,
-//            @RequestParam(required = false) String url,
-//            HttpServletRequest request) {
-//        String token = CookieUtils.getCookieValue(request, "token");
-//
-//        // token 不为空可能已登录
-//        if (StringUtils.isNotBlank(token)) {
-//            String redisAccount = redisService.get(token);
-//            // 检查token是否在redis中存在，检查account是否与redis中的相同
-//            if (StringUtils.isNotBlank(redisAccount) && redisAccount.equals(account)) {
-//                String json = redisService.get(account);  //从redis中取出account的内容
-//                if (StringUtils.isNotBlank(json)) {
-//                    try {
-//                        PickupUser pickupUser = MapperUtils.json2pojo(json, PickupUser.class); //json转成object
-//                        // 已登录
-//                        if (pickupUser != null) {
-//                            // sso已登陆，返回success标签即可
-//                            return BaseResult.ok();
-//                        }
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }
-//
-//        return BaseResult.notOk(Lists.newArrayList(
-//                new BaseResult.Error("SSO","未登陆")));
-//    }
 
     /**
      * 登录业务
