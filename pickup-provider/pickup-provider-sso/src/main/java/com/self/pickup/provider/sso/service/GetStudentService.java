@@ -3,6 +3,7 @@ package com.self.pickup.provider.sso.service;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * feign调用Student微服务的接口
@@ -12,5 +13,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface GetStudentService {
 
     @RequestMapping(value = "student/checkCreditId")
-    public boolean checkCreditId(String creditId);
+    public boolean checkCreditId(@RequestParam("creditId") String creditId);
 }

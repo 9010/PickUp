@@ -27,7 +27,7 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, Integer> implem
     @Override
     public Student getInfoByCreditId(String creditId) {
         Student student = null;
-
+        System.out.println(creditId + "==================");
         // 从数据库中找到数据
         Example example = new Example(Student.class);
         example.createCriteria().andEqualTo("creditId", creditId);

@@ -8,10 +8,7 @@ import com.self.pickup.provider.student.domain.Student;
 import com.self.pickup.provider.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "student")
@@ -58,8 +55,9 @@ public class StudentController {
      * @param creditId
      * @return
      */
-    @RequestMapping(value = "checkCreditId", method = RequestMethod.POST)
-    public boolean checkCreditId(String creditId){
+    @ResponseBody
+    @RequestMapping(value = "checkCreditId")
+    public boolean checkCreditId(@RequestParam("creditId") String creditId){
         Student student = null;
         student = studentService.getInfoByCreditId(creditId);
 

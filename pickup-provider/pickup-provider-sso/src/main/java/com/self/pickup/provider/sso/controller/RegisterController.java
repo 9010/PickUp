@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @Controller
+@RequestMapping(value = "sso")
 public class RegisterController {
     @Autowired
     private UserService UserService;
@@ -27,7 +28,7 @@ public class RegisterController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "register", method = RequestMethod.POST)
     public String register(@RequestBody JSONObject jsonParam) {
         String account = jsonParam.getString("account");
         String password = jsonParam.getString("password");
