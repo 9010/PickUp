@@ -8,11 +8,11 @@
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.self.pickup.provider.user</groupId>
-    <artifactId>pickup-provider-user</artifactId>
+    <groupId>com.self.pickup.provider.parent</groupId>
+    <artifactId>pickup-provider-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>pickup-provider-user</name>
-    <description>PickUp Provider User</description>
+    <name>pickup-provider-parent</name>
+    <description>PickUp Provider Parent</description>
 
     <properties>
         <java.version>1.8</java.version>
