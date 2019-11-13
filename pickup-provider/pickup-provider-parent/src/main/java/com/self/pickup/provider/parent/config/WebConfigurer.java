@@ -27,17 +27,17 @@ public class WebConfigurer implements WebMvcConfigurer {
         return new LoginInterceptor();
     }
 
-    // 这个方法用来注册拦截器，我们自己写好的拦截器需要通过这里添加注册才能生效
+    // 这个方法用来注册拦截器，自己写的拦截器需要通过这里添加注册才能生效
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authenticationInterceptor())
-                .addPathPatterns("/**");    // 拦截所有请求，通过判断是否有 @LoginRequired 注解 决定是否需要登录
-//        registry.addPathPatterns("/**") //表示拦截所有的请求，
-//         excludePathPatterns("/login", "/register") 表示除了登陆与注册之外，因为登陆注册不需要登陆也可以访问
-//         registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/user/login", "/user/register");
-
+                .addPathPatterns("/**");    // 拦截所有请求
     }
 
+    /**
+     * 解决跨域问题
+     * @return
+     */
     private CorsConfiguration corsConfig() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedOrigin("*");

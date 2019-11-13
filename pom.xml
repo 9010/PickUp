@@ -45,6 +45,7 @@
         <spring-zipkin.version>2.18.2</spring-zipkin.version>
         <spring-zipkin-server.version>2.12.8</spring-zipkin-server.version>
         <spring-webmvc.version>5.2.0.RELEASE</spring-webmvc.version>
+        <fegin.version>1.4.7.RELEASE</fegin.version>
 
         <!-- other Settings -->
         <lombok.version>1.18.8</lombok.version>
@@ -105,6 +106,11 @@
                 <artifactId>spring-webmvc</artifactId>
                 <version>${spring-webmvc.version}</version>
                 <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-feign</artifactId>
+                <version>${fegin.version}</version>
             </dependency>
             <!-- Spring end -->
 

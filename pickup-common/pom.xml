@@ -70,12 +70,9 @@
             <artifactId>spring-webmvc</artifactId>
             <scope>compile</scope>
         </dependency>
-
-        <!-- 特殊导入，为了拦截器 -->
         <dependency>
-            <groupId>com.self.pickup.provider.sso</groupId>
-            <artifactId>pickup-provider-sso</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
         </dependency>
 
     </dependencies>

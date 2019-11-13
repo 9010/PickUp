@@ -22,7 +22,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <fegin.version>1.4.7.RELEASE</fegin.version>
+        <pickup.version>1.0.0-SNAPSHOT</pickup.version>
     </properties>
 
     <dependencies>
@@ -39,7 +39,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
-            <version>${fegin.version}</version>
         </dependency>
 
 <!--        <dependency>-->
@@ -95,8 +94,13 @@
     </dependencies>
 
     <dependencyManagement>
-        <dependencies>
-        </dependencies>
+<!--        <dependencies>-->
+<!--            <dependency>-->
+<!--                <groupId>com.self.pickup.provider.sso</groupId>-->
+<!--                <artifactId>pickup-provider-sso</artifactId>-->
+<!--                <version>${pickup.version}</version>-->
+<!--            </dependency>-->
+<!--        </dependencies>-->
     </dependencyManagement>
 
     <build>

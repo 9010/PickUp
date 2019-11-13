@@ -26,6 +26,18 @@ public class LoginController {
     private LoginService loginService;
 
     /**
+     * 检查是否登陆
+     * @param account
+     * @param password
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "checkLogin")
+    public String checkLogin(String account, String password){
+        return loginService.haveLogin(account, password);
+    }
+
+    /**
      * 登录业务
      *
      * @param jsonParam
@@ -48,7 +60,6 @@ public class LoginController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
 
         // 登录成功

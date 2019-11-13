@@ -1,18 +1,12 @@
 package com.self.pickup.common.inteceptor;
 
-import com.alibaba.fastjson.JSONObject;
-import com.self.pickup.provider.sso.domain.User;
-import com.self.pickup.provider.sso.service.LoginService;
-import com.self.pickup.provider.sso.service.UserService;
+import com.self.pickup.common.service.SsoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
-import java.lang.reflect.Method;
 
 /**
  * 登陆拦截器
@@ -20,7 +14,7 @@ import java.lang.reflect.Method;
 public class LoginInterceptor implements HandlerInterceptor {
 
     @Autowired
-    LoginService loginService;
+    private SsoService ssoService;
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest,
@@ -31,7 +25,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         String account = httpServletRequest.getParameter("account");
 
         // 执行认证
-        String message = loginService.haveLogin(account, token);
+        String message = ssoService.checkLogin(account, token);
         if(message == "ok"){
             return true;
         }
