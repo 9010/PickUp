@@ -25,7 +25,7 @@ public class UserController {
         String account = jsonParam.getString("account");
 
         Parent parent = null;
-
+        // 从数据库中取出个人信息
         parent = parentService.getInfoByAccount(account);
         if(parent == null){
             try {
