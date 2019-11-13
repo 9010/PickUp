@@ -39,7 +39,10 @@ public class LoginServiceImpl extends BaseServiceImpl<User, Integer> implements 
         user = getOneByAccount(account);
 
         // 检查是否取出数据，以及密码是否对应匹配
-        if (user != null && password.equals(user.getPassword())) {
+        if(user.getRemoved() == true){
+            return "该账号已被冻结";
+        }
+        else if (user != null && password.equals(user.getPassword())) {
             return "ok";
         }
         else if(user == null){
@@ -62,16 +65,16 @@ public class LoginServiceImpl extends BaseServiceImpl<User, Integer> implements 
     @Override
     public String haveLogin(String account, String token) {
         User user = null;
-        user =getOneByAccount(account);
+        user = getOneByAccount(account);
 
-        if(user != null && token == user.getToken()){
-            return "ok";
-        }
-        else if(token == null || token == "" || account == null || account == ""){
+        if(token == null || token == "" || account == null || account == "" || user == null){
             return "用户未登陆，请先登陆";
         }
-        else if(user == null){
-            return "此账号已被注销";
+        else if(user.getRemoved() == true){
+            return "账号被冻结";
+        }
+        else if(user != null && token == user.getToken()){
+            return "ok";
         }
         else if(token != user.getToken()){
             return "此账号在已在其他设备登陆，请重新登陆";
@@ -93,7 +96,8 @@ public class LoginServiceImpl extends BaseServiceImpl<User, Integer> implements 
         // 从数据库中找到account数据
         Example example = new Example(User.class);
         //存在account并且未被注销
-        example.createCriteria().andEqualTo("account", account).andEqualTo("removed", false);
+        example.createCriteria().andEqualTo("account", account);
+//                .andEqualTo("removed", false);
         User = userMapper.selectOneByExample(example);
 
         return User;
