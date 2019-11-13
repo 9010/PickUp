@@ -17,11 +17,11 @@ public class LoginServiceImpl extends BaseServiceImpl<User, Integer> implements 
     private static final Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
 
     @Autowired
-    private UserMapper UserMapper;
+    private UserMapper userMapper;
 
     @Override
     public MyMapper<User> getMapper(){
-        return UserMapper;
+        return userMapper;
     }
 
     /**
@@ -37,7 +37,6 @@ public class LoginServiceImpl extends BaseServiceImpl<User, Integer> implements 
         // 先不使用redis，直接从数据库取数据
         // 从数据库中找到account数据
         user = getOneByAccount(account);
-
 
         // 检查是否取出数据，以及密码是否对应匹配
         if (user != null && password.equals(user.getPassword())) {
@@ -68,11 +67,14 @@ public class LoginServiceImpl extends BaseServiceImpl<User, Integer> implements 
         if(user != null && token == user.getToken()){
             return "ok";
         }
+        else if(token == null || token == "" || account == null || account == ""){
+            return "用户未登陆，请先登陆";
+        }
         else if(user == null){
             return "此账号已被注销";
         }
         else if(token != user.getToken()){
-            return "此账号在已在其他设备登陆";
+            return "此账号在已在其他设备登陆，请重新登陆";
         }
         else {
             return "内部错误";
@@ -92,7 +94,7 @@ public class LoginServiceImpl extends BaseServiceImpl<User, Integer> implements 
         Example example = new Example(User.class);
         //存在account并且未被注销
         example.createCriteria().andEqualTo("account", account).andEqualTo("removed", false);
-        User = UserMapper.selectOneByExample(example);
+        User = userMapper.selectOneByExample(example);
 
         return User;
     }

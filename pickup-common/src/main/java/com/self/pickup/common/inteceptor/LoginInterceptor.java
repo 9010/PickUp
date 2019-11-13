@@ -28,34 +28,15 @@ public class LoginInterceptor implements HandlerInterceptor {
                              Object object) throws Exception {
         // 从http请求头中取出token
         String token = httpServletRequest.getParameter("token");
-
-        HandlerMethod handlerMethod = (HandlerMethod) object;
-        Method method = handlerMethod.getMethod();
+        String account = httpServletRequest.getParameter("account");
 
         // 执行认证
-        if (token == null || token == "") {
-            throw new RuntimeException("用户未登陆，请先登录");
-        }
-        // 获取http请求头中的account
-        String account = httpServletRequest.getParameter("account");
-        if (account == null) {
-            throw new RuntimeException("用户未登陆，请先登录");
-        }
-        else{
-            User user = loginService.getOneByAccount(account);
-            if (user == null) {
-                throw new RuntimeException("用户不存在，请重新登录");
-            }
-            //验证用户是否有token
-            if(user.getToken() == null || user.getToken() == ""){
-                throw new RuntimeException("用户未登陆，请先登录");
-            }
-            //验证token是否相同
-            else if(token != user.getToken()){
-                throw new RuntimeException("用户已在其他设备登陆，请重新登陆");
-            }
-            //token相同，认证通过
+        String message = loginService.haveLogin(account, token);
+        if(message == "ok"){
             return true;
+        }
+        else {
+            throw new RuntimeException(message);
         }
     }
 
