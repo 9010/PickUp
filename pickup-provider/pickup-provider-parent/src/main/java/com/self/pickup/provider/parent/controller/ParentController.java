@@ -71,6 +71,7 @@ public class ParentController {
         Parent parent = new Parent(parentName, parentGender, address, relation, familyId, parentPhotoUrl);
 
         int success = parentService.add(parent);
+        //添加成功
         if(success == 1){
             try {
                 return MapperUtils.obj2json(BaseResult.ok());
@@ -78,8 +79,8 @@ public class ParentController {
                 e.printStackTrace();
             }
         }
+        // 出错处理
         else {
-            // 出错处理
             try {
                 return MapperUtils.obj2json(BaseResult.notOk(Lists.newArrayList(
                         new BaseResult.Error("parent", "网络错误"))));
