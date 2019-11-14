@@ -39,10 +39,10 @@ public class Parent {
     private Integer relation;
 
     /**
-     * 身份信息
+     * 家庭ID
      */
-    @Column(name = "credit_id")
-    private String creditId;
+    @Column(name = "family_id")
+    private String familyId;
 
     /**
      * 家长头像图片url
@@ -159,21 +159,21 @@ public class Parent {
     }
 
     /**
-     * 获取身份信息
+     * 获取家庭ID
      *
-     * @return credit_id - 身份信息
+     * @return family_id - 家庭ID
      */
-    public String getCreditId() {
-        return creditId;
+    public String getFamilyId() {
+        return familyId;
     }
 
     /**
-     * 设置身份信息
+     * 设置家庭ID
      *
-     * @param creditId 身份信息
+     * @param familyId 家庭ID
      */
-    public void setCreditId(String creditId) {
-        this.creditId = creditId;
+    public void setFamilyId(String familyId) {
+        this.familyId = familyId;
     }
 
     /**
@@ -191,6 +191,30 @@ public class Parent {
      * @param parentPhotoUrl 家长头像图片url
      */
     public void setParentPhotoUrl(String parentPhotoUrl) {
+        this.parentPhotoUrl = parentPhotoUrl;
+    }
+
+    /**
+     * 空构造器
+     */
+    public Parent() {
+    }
+
+    /**
+     * 创建家长
+     * @param parentName
+     * @param parentGender
+     * @param address
+     * @param relation
+     * @param familyId
+     * @param parentPhotoUrl
+     */
+    public Parent(String parentName, Boolean parentGender, String address, Integer relation, String familyId, String parentPhotoUrl) {
+        this.parentName = parentName;
+        this.parentGender = parentGender;
+        this.address = address;
+        this.relation = relation;
+        this.familyId = familyId;
         this.parentPhotoUrl = parentPhotoUrl;
     }
 }

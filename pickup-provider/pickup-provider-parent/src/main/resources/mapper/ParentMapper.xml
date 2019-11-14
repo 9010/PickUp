@@ -11,7 +11,7 @@
     <result column="parent_gender" jdbcType="BIT" property="parentGender" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="relation" jdbcType="INTEGER" property="relation" />
-    <result column="credit_id" jdbcType="VARCHAR" property="creditId" />
+    <result column="family_id" jdbcType="VARCHAR" property="familyId" />
     <result column="parent_photo_url" jdbcType="LONGVARCHAR" property="parentPhotoUrl" />
   </resultMap>
 </mapper>

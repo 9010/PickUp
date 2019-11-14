@@ -15,10 +15,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(value = "parent")
-public class UserController {
+public class ParentController {
     @Autowired
     private ParentService parentService;
 
+    /**
+     * 获取家长个人信息
+     * @param jsonParam
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "getPersonInfo", method = RequestMethod.POST)
     public String getPersonInfo(@RequestBody JSONObject jsonParam){
@@ -40,6 +45,44 @@ public class UserController {
             try {
                 // 数据返回前端
                 return MapperUtils.obj2json(BaseResult.ok(parent)); // 返回给前端
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return "Exception!";
+    }
+
+    /**
+     * 添加家长
+     * @param jsonParam
+     * @return String
+     */
+    @ResponseBody
+    @RequestMapping(value = "addParent", method = RequestMethod.POST)
+    public String addParent(@RequestBody JSONObject jsonParam){
+        String parentName = jsonParam.getString("parentName");
+        boolean parentGender = jsonParam.getBoolean("parentGender");
+        String parentPhotoUrl = jsonParam.getString("parentPhotoUrl");
+        String address = jsonParam.getString("address");
+        Integer relation = jsonParam.getInteger("relation");
+        String familyId = jsonParam.getString("familyId");
+
+        Parent parent = new Parent(parentName, parentGender, address, relation, familyId, parentPhotoUrl);
+
+        int success = parentService.add(parent);
+        if(success == 1){
+            try {
+                return MapperUtils.obj2json(BaseResult.ok());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            // 出错处理
+            try {
+                return MapperUtils.obj2json(BaseResult.notOk(Lists.newArrayList(
+                        new BaseResult.Error("parent", "网络错误"))));
             } catch (Exception e) {
                 e.printStackTrace();
             }
