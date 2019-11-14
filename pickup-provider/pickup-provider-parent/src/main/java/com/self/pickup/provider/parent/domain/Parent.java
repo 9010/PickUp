@@ -202,6 +202,7 @@ public class Parent {
 
     /**
      * 创建家长
+     * @param account
      * @param parentName
      * @param parentGender
      * @param address
@@ -209,7 +210,8 @@ public class Parent {
      * @param familyId
      * @param parentPhotoUrl
      */
-    public Parent(String parentName, Boolean parentGender, String address, Integer relation, String familyId, String parentPhotoUrl) {
+    public Parent(String account, String parentName, Boolean parentGender, String address, Integer relation, String familyId, String parentPhotoUrl) {
+        this.account = account;
         this.parentName = parentName;
         this.parentGender = parentGender;
         this.address = address;

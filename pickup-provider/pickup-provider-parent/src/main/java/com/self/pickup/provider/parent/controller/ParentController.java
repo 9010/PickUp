@@ -8,10 +8,7 @@ import com.self.pickup.provider.parent.domain.Parent;
 import com.self.pickup.provider.parent.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "parent")
@@ -68,7 +65,8 @@ public class ParentController {
         Integer relation = jsonParam.getInteger("relation");
         String familyId = jsonParam.getString("familyId");
 
-        Parent parent = new Parent(parentName, parentGender, address, relation, familyId, parentPhotoUrl);
+        Parent parent = new Parent("", parentName, parentGender,
+                address, relation, familyId, parentPhotoUrl);
 
         int success = parentService.add(parent);
         //添加成功
@@ -90,5 +88,24 @@ public class ParentController {
         }
 
         return "Exception!";
+    }
+
+    /**
+     * 注册时添加家长
+     * @param account
+     * @param familyId
+     * @return String
+     */
+    @ResponseBody
+    @RequestMapping(value = "addRegister")
+    public int addRegister(@RequestParam("account") String account,
+                           @RequestParam("familyId") String familyId){
+
+        Parent parent = new Parent(account, "", null,
+                "", null, familyId, "");
+
+        int success = parentService.add(parent);
+
+        return success;
     }
 }
