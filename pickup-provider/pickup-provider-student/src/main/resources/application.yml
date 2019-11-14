@@ -2,6 +2,13 @@ spring:
   application:
     name: pickup-provider-student
 
+  cloud:
+    config:
+      uri: http://localhost:8888
+      name: pickup-eureka-client, pickup-client-endpoint
+      label: master
+      profile: dev
+
   datasource:
     druid:
       url: jdbc:mysql://127.0.0.1:3306/PickUp_Student?useUnicode=true&characterEncoding=utf-8&useSSL=false
@@ -16,17 +23,3 @@ spring:
 
 server:
   port: 58082
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-
-management:
-  endpoint:
-    health:
-      show-details: always
-  endpoints:
-    web:
-      exposure:
-        include: health,info

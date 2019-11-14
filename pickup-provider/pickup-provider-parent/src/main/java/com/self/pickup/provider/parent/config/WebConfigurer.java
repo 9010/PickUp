@@ -1,6 +1,5 @@
 package com.self.pickup.provider.parent.config;
 
-import com.self.pickup.provider.sso.inteceptor.LoginInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
