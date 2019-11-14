@@ -24,12 +24,6 @@ public class User {
     private String token;
 
     /**
-     * 学校ID
-     */
-    @Column(name = "school_id")
-    private String schoolId;
-
-    /**
      * 身份信息
      */
     @Column(name = "credit_id")
@@ -114,24 +108,6 @@ public class User {
     }
 
     /**
-     * 获取学校ID
-     *
-     * @return school_id - 学校ID
-     */
-    public String getSchoolId() {
-        return schoolId;
-    }
-
-    /**
-     * 设置学校ID
-     *
-     * @param schoolId 学校ID
-     */
-    public void setSchoolId(String schoolId) {
-        this.schoolId = schoolId;
-    }
-
-    /**
      * 获取身份信息
      *
      * @return credit_id - 身份信息
@@ -195,13 +171,11 @@ public class User {
      * 注册用构造器，类型为家长
      * @param account
      * @param password
-     * @param schoolId
      * @param creditId
      */
-    public User(String account, String password, String schoolId, String creditId) {
+    public User(String account, String password, String creditId) {
         this.account = account;
         this.password = password;
-        this.schoolId = schoolId;
         this.creditId = creditId;
         this.token = "";
         this.type = false;

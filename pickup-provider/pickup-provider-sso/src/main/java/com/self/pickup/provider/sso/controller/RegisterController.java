@@ -32,7 +32,6 @@ public class RegisterController {
     public String register(@RequestBody JSONObject jsonParam) {
         String account = jsonParam.getString("account");
         String password = jsonParam.getString("password");
-        String schoolId = jsonParam.getString("schoolId");
         String creditId = jsonParam.getString("creditId");
 
         // 检查学籍号是否正确
@@ -40,7 +39,7 @@ public class RegisterController {
         // 学籍号正确
         if(checkCreditId) {
 
-            User User = new User(account, password, schoolId, creditId);
+            User User = new User(account, password, creditId);
 
             int success = UserService.add(User);
             if (success == 1) {
