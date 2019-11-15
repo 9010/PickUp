@@ -10,6 +10,7 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="token" jdbcType="VARCHAR" property="token" />
     <result column="credit_id" jdbcType="VARCHAR" property="creditId" />
+    <result column="familyId" jdbcType="VARCHAR" property="familyid" />
     <result column="type" jdbcType="BIT" property="type" />
     <result column="removed" jdbcType="BIT" property="removed" />
   </resultMap>

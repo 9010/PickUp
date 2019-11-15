@@ -30,6 +30,12 @@ public class User {
     private String creditId;
 
     /**
+     * 家庭ID
+     */
+    @Column(name = "familyId")
+    private String familyid;
+
+    /**
      * 用户类型 0为家长 1为教师
      */
     private Boolean type;
@@ -126,6 +132,24 @@ public class User {
     }
 
     /**
+     * 获取家庭ID
+     *
+     * @return familyId - 家庭ID
+     */
+    public String getFamilyid() {
+        return familyid;
+    }
+
+    /**
+     * 设置家庭ID
+     *
+     * @param familyid 家庭ID
+     */
+    public void setFamilyid(String familyid) {
+        this.familyid = familyid;
+    }
+
+    /**
      * 获取用户类型 0为家长 1为教师
      *
      * @return type - 用户类型 0为家长 1为教师
@@ -177,6 +201,7 @@ public class User {
         this.account = account;
         this.password = password;
         this.creditId = creditId;
+        this.familyid = "";
         this.token = "";
         this.type = false;
         this.removed = false;
