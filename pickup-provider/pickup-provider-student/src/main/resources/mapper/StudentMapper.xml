@@ -12,6 +12,7 @@
     <result column="gender" jdbcType="BIT" property="gender" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="family_id" jdbcType="VARCHAR" property="familyId" />
     <result column="school_id" jdbcType="VARCHAR" property="schoolId" />
     <result column="student_pic_url" jdbcType="LONGVARCHAR" property="studentPicUrl" />
   </resultMap>

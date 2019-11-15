@@ -42,6 +42,12 @@ public class Student {
     private String address;
 
     /**
+     * 家庭ID
+     */
+    @Column(name = "family_id")
+    private String familyId;
+
+    /**
      * 学校ID
      */
     @Column(name = "school_id")
@@ -173,6 +179,24 @@ public class Student {
      */
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    /**
+     * 获取家庭ID
+     *
+     * @return family_id - 家庭ID
+     */
+    public String getFamilyId() {
+        return familyId;
+    }
+
+    /**
+     * 设置家庭ID
+     *
+     * @param familyId 家庭ID
+     */
+    public void setFamilyId(String familyId) {
+        this.familyId = familyId;
     }
 
     /**
