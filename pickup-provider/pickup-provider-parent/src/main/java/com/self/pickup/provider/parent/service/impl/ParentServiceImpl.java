@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.List;
+
 @Service
 public class ParentServiceImpl extends BaseServiceImpl<Parent, Integer> implements ParentService {
     @Autowired
@@ -34,5 +36,22 @@ public class ParentServiceImpl extends BaseServiceImpl<Parent, Integer> implemen
         parent = parentMapper.selectOneByExample(example);
 
         return parent;
+    }
+
+    /**
+     * 根据家庭ID获取家长信息
+     * @param familyId 家庭ID
+     * @return List
+     */
+    @Override
+    public List<Parent> getParentByFamilyId(String familyId) {
+        List<Parent> parents = null;
+
+        // 从数据库中找到数据
+        Example example = new Example(Parent.class);
+        example.createCriteria().andEqualTo("familyId", familyId);
+        parents = parentMapper.selectByExample(example);
+
+        return parents;
     }
 }
