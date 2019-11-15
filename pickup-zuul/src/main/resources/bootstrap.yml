@@ -2,6 +2,6 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888
-      name: pickup-zuul
+      name: pickup-zuul, pickup-client-endpoint, pickup-eureka-client
       label: master
       profile: dev

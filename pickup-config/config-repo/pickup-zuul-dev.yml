@@ -10,33 +10,20 @@ spring:
 server:
   port: 8769
 
-security:
-  oauth2:
-    client:
-      client-id: ben1
-      client-secret: 123456
-      user-authorization-uri: http://localhost:9000/pickup/oauth/authorize
-      access-token-uri: http://localhost:9000/pickup/oauth/token
-    resource:
-      jwt:
-        key-uri: http://localhost:9000/pickup/oauth/token_key
+#security:
+#  oauth2:
+#    client:
+#      client-id: ben1
+#      client-secret: 123456
+#      user-authorization-uri: http://localhost:9000/pickup/oauth/authorize
+#      access-token-uri: http://localhost:9000/pickup/oauth/token
+#    resource:
+#      jwt:
+#        key-uri: http://localhost:9000/pickup/oauth/token_key
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
 
 zuul:
   routes:
     pickup-provider:
       path: /pickup-provider-user/**
       serviceId: pickup-provider-user
-
-management:
-  endpoint:
-    health:
-      show-details: always
-  endpoints:
-    web:
-      exposure:
-        include: health,info
