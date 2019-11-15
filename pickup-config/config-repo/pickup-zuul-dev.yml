@@ -34,3 +34,6 @@ zuul:
     pickup-provider-student:
       path: /student/**
       serviceId: pickup=provider-student
+    pickup-provider-family:
+      path: /family/**
+      serviceId: pickup=provider-family
