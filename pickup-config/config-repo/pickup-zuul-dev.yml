@@ -25,5 +25,5 @@ server:
 zuul:
   routes:
     pickup-provider:
-      path: /pickup-provider-user/**
-      serviceId: pickup-provider-user
+      path: /sso/**
+      serviceId: pickup-provider-sso

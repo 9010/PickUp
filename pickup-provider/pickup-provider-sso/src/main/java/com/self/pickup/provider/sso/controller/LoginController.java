@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @CrossOrigin
 @Controller
-@RequestMapping(value = "sso")
+//@RequestMapping(value = "sso")
 public class LoginController {
 
 //    @Autowired
