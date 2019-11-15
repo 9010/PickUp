@@ -12,6 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "pickup-provider-student")
 public interface GetStudentService {
 
-    @RequestMapping(value = "/pickup/student/checkCreditId")
+    @RequestMapping(value = "checkCreditId")
     public boolean checkCreditId(@RequestParam("creditId") String creditId);
 }

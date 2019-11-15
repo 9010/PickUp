@@ -23,7 +23,7 @@ server:
 
 
 zuul:
-#  prefix: /pickup
+  prefix: /pickup
   routes:
     pickup-provider-sso:
       path: /sso/**
