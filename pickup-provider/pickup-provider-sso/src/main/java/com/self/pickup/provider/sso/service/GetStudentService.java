@@ -12,6 +12,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "pickup-provider-student")
 public interface GetStudentService {
 
+    /**
+     * 检查学籍号
+     * @param creditId 学籍号
+     * @return boolean
+     */
     @RequestMapping(value = "checkCreditId")
     public boolean checkCreditId(@RequestParam("creditId") String creditId);
+
+    /**
+     * 设置学生的家庭ID
+     * @param creditId 学籍号
+     * @param familyId 家庭ID
+     * @return int
+     */
+    @RequestMapping(value = "setFamilyId")
+    public int setFamilyID(@RequestParam("creditId") String creditId,
+                              @RequestParam("familyId") String familyId);
 }

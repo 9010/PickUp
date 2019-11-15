@@ -38,7 +38,7 @@ public class LoginController {
      * 登录业务
      *
      * @param jsonParam
-     * @return
+     * @return String
      */
     @ResponseBody
     @RequestMapping(value = "login", method = RequestMethod.POST)
@@ -98,7 +98,7 @@ public class LoginController {
      * 注销
      *
      * @param jsonParam
-     * @return
+     * @return String
      */
     @ResponseBody
     @RequestMapping(value = "logout", method = RequestMethod.POST)

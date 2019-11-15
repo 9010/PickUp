@@ -50,39 +50,34 @@ public class StudentController {
     }
 
     /**
-     * 设置家庭ID
-     * @param creditId
-     * @return
+     * 设置家庭ID，注册时使用
+     * @param creditId 学籍号
+     * @param familyId 家庭ID
+     * @return int
      */
     @ResponseBody
     @RequestMapping(value = "setFamilyID")
-    public String setFamilyID(@RequestParam("creditId") String creditId,
+    public int setFamilyID(@RequestParam("creditId") String creditId,
                                @RequestParam("familyId") String familyId){
         Student student = null;
         student = studentService.getInfoByCreditId(creditId);
 
         // 学籍号出错
         if(student ==null){
-            return "学籍号错误";
+            return 0;
         }
         else{
             // 更新familyId，并更新数据库
             student.setFamilyId(familyId);
             int success = studentService.updateByPrimaryKey(student);
-            if(success == 1){
-                return "ok";
-            }
-            // 错误处理
-            else {
-                return "数据库错误";
-            }
+            return success;
         }
     }
 
     /**
      * 检查学籍号是否存在，注册时使用
-     * @param creditId
-     * @return
+     * @param creditId 学籍号
+     * @return boolean
      */
     @ResponseBody
     @RequestMapping(value = "checkCreditId")

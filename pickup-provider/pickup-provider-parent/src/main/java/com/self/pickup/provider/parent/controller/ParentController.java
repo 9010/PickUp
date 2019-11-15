@@ -18,7 +18,7 @@ public class ParentController {
     /**
      * 获取家长个人信息
      * @param jsonParam
-     * @return
+     * @return String
      */
     @ResponseBody
     @RequestMapping(value = "getPersonInfo", method = RequestMethod.POST)
@@ -91,8 +91,8 @@ public class ParentController {
 
     /**
      * 注册时添加家长
-     * @param account
-     * @param familyId
+     * @param account 账号
+     * @param familyId 家庭ID
      * @return String
      */
     @ResponseBody

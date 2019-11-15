@@ -28,7 +28,7 @@ public class RegisterController {
      * 注册业务
      *
      * @param jsonParam
-     * @return
+     * @return String
      */
     @ResponseBody
     @RequestMapping(value = "register", method = RequestMethod.POST)
@@ -47,9 +47,11 @@ public class RegisterController {
             int success_user = UserService.add(User);
             // 数据插入PickUp_Parent数据库
             int success_parent = getParentService.addRegister(account, account);
+            // 更新PickUp_Student对应学生的familyId
+            int success_student = getStudentService.setFamilyID(creditId, account);
 
             // 插入数据库均成功，返回前端
-            if (success_user == 1 && success_parent == 1) {
+            if (success_user == 1 && success_parent == 1 && success_student == 1) {
                 try {
                     return MapperUtils.obj2json(BaseResult.ok(User));
                 } catch (Exception e) {
