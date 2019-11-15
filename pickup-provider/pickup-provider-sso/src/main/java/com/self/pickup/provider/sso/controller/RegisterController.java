@@ -41,19 +41,25 @@ public class RegisterController {
         boolean checkCreditId = getStudentService.checkCreditId(creditId);
         // 学籍号正确
         if(checkCreditId) {
-            User User = new User(account, password, creditId);
+            User user = new User(account, password, creditId);
 
             // 数据插入PickUp_User数据库
-            int success_user = UserService.add(User);
+            int success_user = UserService.add(user);
             // 数据插入PickUp_Parent数据库
+            // todo 测试使用
             int success_parent = getParentService.addRegister(account, account);
             // 更新PickUp_Student对应学生的familyId
+            // todo 测试使用
             int success_student = getStudentService.setFamilyID(creditId, account);
+
+            // user设定familyId
+            // todo 测试使用，后期要改
+            user.setFamilyid(account);
 
             // 插入数据库均成功，返回前端
             if (success_user == 1 && success_parent == 1 && success_student == 1) {
                 try {
-                    return MapperUtils.obj2json(BaseResult.ok(User));
+                    return MapperUtils.obj2json(BaseResult.ok());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
