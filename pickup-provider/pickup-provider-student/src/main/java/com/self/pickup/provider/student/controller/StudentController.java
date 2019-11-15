@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(value = "student")
+//@RequestMapping(value = "student")
 public class StudentController {
     @Autowired
     private StudentService studentService;

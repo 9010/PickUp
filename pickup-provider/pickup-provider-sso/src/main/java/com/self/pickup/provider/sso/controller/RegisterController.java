@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @Controller
-@RequestMapping(value = "sso")
+//@RequestMapping(value = "sso")
 public class RegisterController {
     @Autowired
     private UserService UserService;

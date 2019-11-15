@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(value = "parent")
+//@RequestMapping(value = "parent")
 public class ParentController {
     @Autowired
     private ParentService parentService;

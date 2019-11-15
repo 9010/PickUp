@@ -23,7 +23,14 @@ server:
 
 
 zuul:
+  prefix: /pickup
   routes:
-    pickup-provider:
+    pickup-provider-sso:
       path: /sso/**
       serviceId: pickup-provider-sso
+    pcikup-provider-parent:
+      path: /parent/**
+      serviceId: pickup-provider-parent
+    pickup-provider-student:
+      path: /student/**
+      serviceId: pickup=provider-student
