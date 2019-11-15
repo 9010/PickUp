@@ -105,19 +105,19 @@ public class LoginController {
     public String logout(@RequestBody JSONObject jsonParam) {
         String account = jsonParam.getString("account");
         User user = loginService.getOneByAccount(account);
-        if(user == null){
+        if(user != null){
+            user.setToken("");
+            loginService.updateByPrimaryKey(user);
             try {
-                return MapperUtils.obj2json(BaseResult.notOk(Lists.newArrayList(
-                        new BaseResult.Error("Logout","不存在的账号"))));
+                return MapperUtils.obj2json(BaseResult.ok()); // 返回给前端
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         else{
-            user.setToken("");
-            loginService.updateByPrimaryKey(user);
             try {
-                return MapperUtils.obj2json(BaseResult.ok()); // 返回给前端
+                return MapperUtils.obj2json(BaseResult.notOk(Lists.newArrayList(
+                        new BaseResult.Error("Logout","不存在的账号"))));
             } catch (Exception e) {
                 e.printStackTrace();
             }
