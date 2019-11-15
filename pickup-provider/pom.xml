@@ -19,6 +19,7 @@
         <module>pickup-provider-parent</module>
         <module>pickup-provider-sso</module>
         <module>pickup-provider-student</module>
+        <module>pickup-provider-family</module>
     </modules>
 
     <properties>

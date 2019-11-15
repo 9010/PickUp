@@ -52,10 +52,6 @@ public class RegisterController {
             // todo 测试使用
             int success_student = getStudentService.setFamilyID(creditId, account);
 
-            // user设定familyId
-            // todo 测试使用，后期要改
-            user.setFamilyid(account);
-
             // 插入数据库均成功，返回前端
             if (success_user == 1 && success_parent == 1 && success_student == 1) {
                 try {
