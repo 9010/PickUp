@@ -26,14 +26,14 @@ zuul:
   prefix: /pickup
   routes:
     pickup-provider-sso:
-      path: /sso/**
+      path: /sso/exposure/**
       serviceId: pickup-provider-sso
     pcikup-provider-parent:
-      path: /parent/**
+      path: /parent/exposure/**
       serviceId: pickup-provider-parent
     pickup-provider-student:
-      path: /student/**
+      path: /student/exposure/**
       serviceId: pickup=provider-student
     pickup-provider-family:
-      path: /family/**
+      path: /family/exposure/**
       serviceId: pickup=provider-family

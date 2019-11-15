@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "pickup-provider-parent")
 public interface GetParentService {
 
-    @RequestMapping(value = "addRegister")
+    @RequestMapping(value = "internal/addRegister")
     public int addRegister(@RequestParam("account") String account,
                            @RequestParam("familyId") String familyId);
 }

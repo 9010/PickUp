@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-//@RequestMapping(value = "parent")
+@RequestMapping(value = "exposure")
 public class ParentController {
     @Autowired
     private ParentService parentService;
@@ -89,22 +89,4 @@ public class ParentController {
         return "Exception!";
     }
 
-    /**
-     * 注册时添加家长
-     * @param account 账号
-     * @param familyId 家庭ID
-     * @return String
-     */
-    @ResponseBody
-    @RequestMapping(value = "addRegister")
-    public int addRegister(@RequestParam("account") String account,
-                           @RequestParam("familyId") String familyId){
-
-        Parent parent = new Parent(account, "", null,
-                "", null, familyId, "");
-
-        int success = parentService.add(parent);
-
-        return success;
-    }
 }

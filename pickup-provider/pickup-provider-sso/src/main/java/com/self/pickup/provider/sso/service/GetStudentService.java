@@ -17,7 +17,7 @@ public interface GetStudentService {
      * @param creditId 学籍号
      * @return boolean
      */
-    @RequestMapping(value = "checkCreditId")
+    @RequestMapping(value = "internal/checkCreditId")
     public boolean checkCreditId(@RequestParam("creditId") String creditId);
 
     /**
@@ -26,7 +26,7 @@ public interface GetStudentService {
      * @param familyId 家庭ID
      * @return int
      */
-    @RequestMapping(value = "setFamilyId")
+    @RequestMapping(value = "internal/setFamilyId")
     public int setFamilyID(@RequestParam("creditId") String creditId,
                               @RequestParam("familyId") String familyId);
 }

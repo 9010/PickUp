@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-//@RequestMapping(value = "student")
+@RequestMapping(value = "exposure")
 public class StudentController {
     @Autowired
     private StudentService studentService;
@@ -49,43 +49,5 @@ public class StudentController {
         return "Exception!";
     }
 
-    /**
-     * 设置家庭ID，注册时使用
-     * @param creditId 学籍号
-     * @param familyId 家庭ID
-     * @return int
-     */
-    @ResponseBody
-    @RequestMapping(value = "setFamilyID")
-    public int setFamilyID(@RequestParam("creditId") String creditId,
-                               @RequestParam("familyId") String familyId){
-        Student student = null;
-        student = studentService.getInfoByCreditId(creditId);
 
-        // 学籍号出错
-        if(student ==null){
-            return 0;
-        }
-        else{
-            // 更新familyId，并更新数据库
-            student.setFamilyId(familyId);
-            int success = studentService.updateByPrimaryKey(student);
-            return success;
-        }
-    }
-
-    /**
-     * 检查学籍号是否存在，注册时使用
-     * @param creditId 学籍号
-     * @return boolean
-     */
-    @ResponseBody
-    @RequestMapping(value = "checkCreditId")
-    public boolean checkCreditId(@RequestParam("creditId") String creditId){
-        Student student = null;
-        student = studentService.getInfoByCreditId(creditId);
-
-        if(student != null) return true;
-        else return false;
-    }
 }
