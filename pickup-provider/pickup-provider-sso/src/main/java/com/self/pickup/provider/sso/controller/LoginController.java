@@ -6,16 +6,13 @@ import com.self.pickup.common.dto.BaseResult;
 import com.self.pickup.common.utils.MapperUtils;
 import com.self.pickup.provider.sso.domain.User;
 import com.self.pickup.provider.sso.service.LoginService;
-import com.self.pickup.provider.sso.service.consumer.RedisCacheService;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @CrossOrigin
-@Controller
+@RestController
 //@RequestMapping(value = "sso")
 public class LoginController {
 

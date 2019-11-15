@@ -7,10 +7,9 @@ import com.self.pickup.common.utils.MapperUtils;
 import com.self.pickup.provider.student.domain.Student;
 import com.self.pickup.provider.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 //@RequestMapping(value = "student")
 public class StudentController {
     @Autowired

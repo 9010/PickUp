@@ -7,10 +7,9 @@ import com.self.pickup.common.utils.MapperUtils;
 import com.self.pickup.provider.parent.domain.Parent;
 import com.self.pickup.provider.parent.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 //@RequestMapping(value = "parent")
 public class ParentController {
     @Autowired

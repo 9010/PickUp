@@ -9,11 +9,10 @@ import com.self.pickup.provider.sso.service.GetParentService;
 import com.self.pickup.provider.sso.service.GetStudentService;
 import com.self.pickup.provider.sso.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
-@Controller
+@RestController
 //@RequestMapping(value = "sso")
 public class RegisterController {
     @Autowired
