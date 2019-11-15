@@ -51,6 +51,7 @@ public class RegisterController {
             // 更新PickUp_Student对应学生的familyId
             // todo 测试使用
             int success_student = getStudentService.setFamilyID(creditId, account);
+            // 更新PickUp_Family对应的账号的familyId
 
             // 插入数据库均成功，返回前端
             if (success_user == 1 && success_parent == 1 && success_student == 1) {

@@ -23,7 +23,9 @@ public class FamilyController {
     @ResponseBody
     @RequestMapping(value = "getFamilyParent", method = RequestMethod.POST)
     public String getFamilyParent(@RequestBody JSONObject jsonParam){
-        String familyId = jsonParam.getString("familyId");
+        String account = jsonParam.getString("account");
+
+
 
         // 请求未携带familyId
         if(familyId == null){
