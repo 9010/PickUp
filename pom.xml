@@ -60,7 +60,7 @@
         <tk-mybatis.version>2.1.5</tk-mybatis.version>
         <tk-mybatis-mapper.version>4.1.5</tk-mybatis-mapper.version>
         <spring-boot-alibaba-durid.version>1.1.18</spring-boot-alibaba-durid.version>
-        <mysql.version>5.1.46</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
     </properties>
 
     <dependencies>
