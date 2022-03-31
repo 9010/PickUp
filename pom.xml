@@ -44,7 +44,7 @@
         <spring-config.version>2.1.2.RELEASE</spring-config.version>
         <spring-zipkin.version>2.18.2</spring-zipkin.version>
         <spring-zipkin-server.version>2.12.8</spring-zipkin-server.version>
-        <spring-webmvc.version>5.2.0.RELEASE</spring-webmvc.version>
+        <spring-webmvc.version>5.3.18</spring-webmvc.version>
         <fegin.version>1.4.7.RELEASE</fegin.version>
 
         <!-- other Settings -->
