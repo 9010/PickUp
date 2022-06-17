@@ -54,7 +54,7 @@
         <lang3.version>3.9</lang3.version>
         <spring-boot-pagehelper.version>1.2.12</spring-boot-pagehelper.version>
         <pickup.version>1.0.0-SNAPSHOT</pickup.version>
-        <fastjson.version>1.2.62</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
 
         <!-- DataBase settings -->
         <tk-mybatis.version>2.1.5</tk-mybatis.version>
